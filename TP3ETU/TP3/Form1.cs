@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace TP3
 {
-  public partial class Form1 : Form
+  public partial class MillipedeGameForm : Form
   {
     private MillipedeGame game = new MillipedeGame( );
-    public Form1( )
+    public MillipedeGameForm( )
     {
       InitializeComponent( );
     }

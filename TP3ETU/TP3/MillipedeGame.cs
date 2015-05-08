@@ -16,8 +16,9 @@ namespace TP3
     Random rnd = new Random();
     public const int NB_HORIZONTAL_BLOCKS = 35;
     public const int NB_VERTICAL_BLOCKS = 40;
-    public const int GAME_WIDTH = 16*NB_HORIZONTAL_BLOCKS;
-    public const int GAME_HEIGHT = 16 * NB_VERTICAL_BLOCKS;
+    public const int OBJECT_SIZE = 16;
+    public const int GAME_WIDTH = OBJECT_SIZE*NB_HORIZONTAL_BLOCKS;
+    public const int GAME_HEIGHT = OBJECT_SIZE* NB_VERTICAL_BLOCKS;
     public const int NB_STARTING_MUSHROOM = 40;
     //</Tommy Bouffard>
     public MillipedeGame( )
@@ -25,7 +26,7 @@ namespace TP3
       //<Tommy Bouffard
       for (int i = 0; i != NB_STARTING_MUSHROOM; i++)
       {
-        mushrooms.Add(new Mushroom(rnd.Next(0, GAME_WIDTH - 16), rnd.Next(0, 2*GAME_HEIGHT/3)));
+        mushrooms.Add(new Mushroom(rnd.Next(0, NB_HORIZONTAL_BLOCKS), rnd.Next(0, 2*NB_VERTICAL_BLOCKS/3)));
       }
       //</Tommy Bouffard>
     }

@@ -28,7 +28,7 @@ namespace TP3
     }
     public void Draw(Graphics g)
     {
-      g.DrawImage(Properties.Resources.Mushroom, new Point(xPosition, yPosition));
+      g.DrawImage(Properties.Resources.Mushroom, new Point(xPosition*MillipedeGame.OBJECT_SIZE, yPosition*MillipedeGame.OBJECT_SIZE));
     }
   }
 }
