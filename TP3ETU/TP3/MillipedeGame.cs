@@ -11,9 +11,23 @@ namespace TP3
 {
   class MillipedeGame
   {
+    //<Tommy Bouffard>
+    List<Mushroom> mushrooms = new List<Mushroom>();
+    Random rnd = new Random();
+    public const int NB_HORIZONTAL_BLOCKS = 35;
+    public const int NB_VERTICAL_BLOCKS = 40;
+    public const int GAME_WIDTH = 16*NB_HORIZONTAL_BLOCKS;
+    public const int GAME_HEIGHT = 16 * NB_VERTICAL_BLOCKS;
+    public const int NB_STARTING_MUSHROOM = 40;
+    //</Tommy Bouffard>
     public MillipedeGame( )
     {
-      
+      //<Tommy Bouffard
+      for (int i = 0; i != NB_STARTING_MUSHROOM; i++)
+      {
+        mushrooms.Add(new Mushroom(rnd.Next(0, GAME_WIDTH - 16), rnd.Next(0, 2*GAME_HEIGHT/3)));
+      }
+      //</Tommy Bouffard>
     }
 
     /// <summary>
@@ -47,10 +61,13 @@ namespace TP3
     
     public void Draw(Graphics g)
     {
-      
+      //<Tommy Bouffard>
+      foreach (Mushroom mush in mushrooms)
+      {
+        mush.Draw(g);
+      }
+      //</Tommy Bouffard>
     }
-
-
   }
 }
 

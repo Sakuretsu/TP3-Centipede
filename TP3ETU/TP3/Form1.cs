@@ -20,7 +20,7 @@ namespace TP3
 
     private void OnLoad( object sender, EventArgs e )
     {
-      //this.ClientSize = new Size( MillipedeGame.WIDTH, MillipedeGame.HEIGHT );
+      this.ClientSize = new Size( MillipedeGame.GAME_WIDTH, MillipedeGame.GAME_HEIGHT );
     }
 
     private void OnDraw( object sender, PaintEventArgs e )
