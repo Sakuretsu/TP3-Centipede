@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TP3", "TP3\TP3.csproj", "{FE1EDC0F-6004-4867-A474-A44C94D883F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestLeaderboard", "TestLeaderboard\TestLeaderboard.csproj", "{23D2CF87-E017-4B05-B7E2-49EDE3444679}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FE1EDC0F-6004-4867-A474-A44C94D883F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE1EDC0F-6004-4867-A474-A44C94D883F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE1EDC0F-6004-4867-A474-A44C94D883F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE1EDC0F-6004-4867-A474-A44C94D883F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23D2CF87-E017-4B05-B7E2-49EDE3444679}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23D2CF87-E017-4B05-B7E2-49EDE3444679}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23D2CF87-E017-4B05-B7E2-49EDE3444679}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23D2CF87-E017-4B05-B7E2-49EDE3444679}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
