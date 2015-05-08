@@ -1,6 +1,6 @@
 ﻿namespace TP3
 {
-  partial class Form1
+  partial class MillipedeGameForm
   {
     /// <summary>
     /// Required designer variable.
@@ -38,7 +38,7 @@
       this.mainTimer.Interval = 30;
       this.mainTimer.Tick += new System.EventHandler(this.OnTimer);
       // 
-      // Form1
+      // MillipedeGameForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -47,8 +47,8 @@
       this.DoubleBuffered = true;
       this.MaximizeBox = false;
       this.MinimizeBox = false;
-      this.Name = "Form1";
-      this.Text = "Centipede";
+      this.Name = "MillipedeGameForm";
+      this.Text = "Millipede";
       this.Load += new System.EventHandler(this.OnLoad);
       this.Paint += new System.Windows.Forms.PaintEventHandler(this.OnDraw);
       this.ResumeLayout(false);
