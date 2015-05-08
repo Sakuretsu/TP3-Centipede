@@ -32,6 +32,7 @@ namespace TP3
       catch (Exception ex)
       {
         Console.WriteLine("Logger : " + ex.Message);
+        Console.WriteLine(text);
       }
     }
 
@@ -45,6 +46,7 @@ namespace TP3
       catch (Exception ex)
       {
         Console.WriteLine("Logger : " + ex.Message);
+        Console.WriteLine(text);
       }
     }
   }

@@ -11,6 +11,7 @@ namespace TP3
   {
     private List<Point> bodyParts = null;
     private int maxLength = 0;
+    private Direction direction = Direction.Undefined;
 
     public void Draw(Graphics g)
     {
@@ -46,9 +47,38 @@ namespace TP3
             {
               splittedSnake2.bodyParts.Add(bodyParts[j]);
             }
+
+            break;
           }
         }
       }
+    }
+
+    public void Update(List<Mushroom> mushrooms)
+    {
+      Point newPart = bodyParts[bodyParts.Count() - 1];
+      newPart.X += (int)direction;
+
+      foreach (Mushroom mushroom in mushrooms)
+      {
+        if (newPart.X == mushroom.XPosition)
+        {
+          newPart.X -= (int)direction;
+          newPart.Y++;
+
+          if (direction == Direction.Left)
+            direction = Direction.Right;
+          else
+            direction = Direction.Left;
+
+          break;
+        }
+      }
+
+      bodyParts.Add(newPart);
+
+      if (bodyParts.Capacity == bodyParts.Count)
+        bodyParts.RemoveAt(0);
     }
 
     public Point this[int index]
