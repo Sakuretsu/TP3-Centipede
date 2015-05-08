@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿//<Tommy Bouffard>
+using System.Drawing;
 
 namespace TP3
 {
@@ -16,10 +13,6 @@ namespace TP3
       {
         return yPosition;
       }
-      set
-      {
-        yPosition = value;
-      }
     }
     public int XPosition
     {
@@ -27,15 +20,16 @@ namespace TP3
       {
         return xPosition;
       }
-      set
-      {
-        xPosition = value;
-      }
     }
     public Mushroom(int x, int y)
     {
       xPosition = x;
       yPosition = y;
     }
+    public void Draw(Graphics g)
+    {
+      g.DrawImage(Properties.Resources.Mushroom, new Point(xPosition, yPosition));
+    }
   }
 }
+//</Tommy Bouffard>
