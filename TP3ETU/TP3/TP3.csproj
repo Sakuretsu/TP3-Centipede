@@ -46,6 +46,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Direction.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="MillipedeGame.cs" />
     <Compile Include="Form1.cs">

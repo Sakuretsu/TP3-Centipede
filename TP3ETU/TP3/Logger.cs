@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿//<Charles Lachance>
+using System;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TP3
 {
@@ -51,3 +48,4 @@ namespace TP3
     }
   }
 }
+//</Charles Lachance>

@@ -1,9 +1,9 @@
-﻿using System;
+﻿
+//<Charles Lachance>
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TP3
 {
@@ -15,9 +15,9 @@ namespace TP3
 
     public void Draw(Graphics g)
     {
-      foreach (Point parts in bodyParts)
+      foreach (Point part in bodyParts)
       {
-        g.DrawImage(Properties.Resources.SnakePart, parts);
+        g.DrawImage(Properties.Resources.SnakePart, part.X * MillipedeGame.OBJECT_SIZE, part.Y * MillipedeGame.OBJECT_SIZE);
       }
     }
 
@@ -29,6 +29,7 @@ namespace TP3
       }
 
       bodyParts = new List<Point>(length);
+      direction = Direction.Left;
     }
 
     public void Split(Point pt, Snake splittedSnake1, Snake splittedSnake2)
@@ -56,24 +57,43 @@ namespace TP3
 
     public void Update(List<Mushroom> mushrooms)
     {
-      Point newPart = bodyParts[bodyParts.Count() - 1];
+      Point newPart = new Point(35, 0);
+      if (bodyParts.Count() > 0)
+      {
+        newPart = bodyParts[bodyParts.Count() - 1];
+      }
+
       newPart.X += (int)direction;
 
-      foreach (Mushroom mushroom in mushrooms)
+      if (newPart.X < 0 || newPart.X >= MillipedeGame.NB_HORIZONTAL_BLOCKS)
       {
-        if (newPart.X == mushroom.XPosition)
+        newPart.X -= (int)direction;
+        newPart.Y++;
+
+        if (direction == Direction.Left)
+          direction = Direction.Right;
+        else
+          direction = Direction.Left;
+      }
+      else
+      {
+        foreach (Mushroom mushroom in mushrooms)
         {
-          newPart.X -= (int)direction;
-          newPart.Y++;
+          if (newPart.X == mushroom.XPosition && newPart.Y == mushroom.YPosition)
+          {
+            newPart.X -= (int)direction;
+            newPart.Y++;
 
-          if (direction == Direction.Left)
-            direction = Direction.Right;
-          else
-            direction = Direction.Left;
+            if (direction == Direction.Left)
+              direction = Direction.Right;
+            else
+              direction = Direction.Left;
 
-          break;
+            break;
+          }
         }
       }
+      
 
       bodyParts.Add(newPart);
 
@@ -102,3 +122,4 @@ namespace TP3
     }
   }
 }
+//</Charles Lachance>

@@ -1,19 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using TP3.Properties;
 
 namespace TP3
 {
   class MillipedeGame
   {
     //<Tommy Bouffard>
-    List<Mushroom> mushrooms = new List<Mushroom>();
-    Random rnd = new Random();
+    private List<Mushroom> mushrooms = new List<Mushroom>(); 
+    private Random rnd = new Random();
     public const int NB_HORIZONTAL_BLOCKS = 35;
     public const int NB_VERTICAL_BLOCKS = 40;
     public const int OBJECT_SIZE = 16;
@@ -21,6 +16,10 @@ namespace TP3
     public const int GAME_HEIGHT = OBJECT_SIZE* NB_VERTICAL_BLOCKS;
     public const int NB_STARTING_MUSHROOM = 40;
     //</Tommy Bouffard>
+    //<Charles Lachance>
+    private Snake snake = null;
+    //</Charles Lachance>
+
     public MillipedeGame( )
     {
       //<Tommy Bouffard
@@ -29,6 +28,10 @@ namespace TP3
         mushrooms.Add(new Mushroom(rnd.Next(0, NB_HORIZONTAL_BLOCKS), rnd.Next(0, 2*NB_VERTICAL_BLOCKS/3)));
       }
       //</Tommy Bouffard>
+
+      //<Charles Lachance>
+      snake = new Snake(rnd.Next(8, 12));
+      //</Charles Lachance>
     }
 
     /// <summary>
@@ -56,9 +59,10 @@ namespace TP3
     // Je n'ai pas pu le faire car il fallait que ça compile.
     public void Update()
     {
-      
+      //<Charles Lachance>
+      snake.Update(mushrooms);
+      //</charles Lachance>
     }
-    
     
     public void Draw(Graphics g)
     {
@@ -68,6 +72,8 @@ namespace TP3
         mush.Draw(g);
       }
       //</Tommy Bouffard>
+
+      snake.Draw(g);
     }
   }
 }
