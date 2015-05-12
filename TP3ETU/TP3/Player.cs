@@ -1,24 +1,104 @@
 ﻿//<Charles Lachance>
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using System.Drawing;
+using System.IO;
+using System.Windows.Forms;
+using System.Windows.Input;
 namespace TP3
 {
   class Player
   {
+    //<Tommy Bouffard>
+    int nbLives = 3;
+    int ammoRemaining = 20;
+    int xPosition = 0;
+    int yPosition = 0;
+    bool playerHasFired = false;
+    public int CONST_PLAYER_SPEED = 10;
     public int NbLives
     {
-      get;
-      private set;
+      get
+      {
+        return nbLives;
+      }
     }
-
-    public Player(int nbLives)
+    public int Ammo
     {
-    
+      get
+      {
+        return ammoRemaining;
+      }
+    }
+    public bool PlayerHasFired
+    {
+      get
+      {
+        return playerHasFired;
+      }
+      set
+      {
+        playerHasFired = value;
+      }
+    }
+    public Player()
+    {
+      nbLives = 3;
+      ammoRemaining = 20;
+      xPosition = MillipedeGame.GAME_WIDTH/2 - MillipedeGame.OBJECT_SIZE;
+      yPosition = MillipedeGame.GAME_HEIGHT - MillipedeGame.OBJECT_SIZE * 2;
+    }
+    public Projectile Fire()
+    {
+      if (ammoRemaining>0)
+      {
+        ammoRemaining--;
+        return new Projectile(xPosition+MillipedeGame.OBJECT_SIZE, yPosition);
+      }
+      else
+      {
+        return new Projectile(-100, -100);
+      }
+    }
+    public void Draw(Graphics g)
+    {
+      g.DrawImage(Properties.Resources.Player, xPosition, yPosition);
+    }
+    public void Update()
+    {
+      if(Keyboard.IsKeyDown(Key.Down))
+      {
+        yPosition += CONST_PLAYER_SPEED;
+        if (yPosition> MillipedeGame.GAME_HEIGHT-MillipedeGame.OBJECT_SIZE*2)
+        {
+          yPosition = MillipedeGame.GAME_HEIGHT - MillipedeGame.OBJECT_SIZE * 2;
+        }
+      }
+      if (Keyboard.IsKeyDown(Key.Up))
+      {
+        yPosition -= CONST_PLAYER_SPEED;
+        if (yPosition < 0)
+        {
+          yPosition = 0;
+        }
+      }
+      if (Keyboard.IsKeyDown(Key.Right))
+      {
+        xPosition += CONST_PLAYER_SPEED;
+        if (xPosition > MillipedeGame.GAME_WIDTH-MillipedeGame.OBJECT_SIZE*2)
+        {
+          xPosition = MillipedeGame.GAME_WIDTH - MillipedeGame.OBJECT_SIZE * 2;
+        }
+      }
+      if (Keyboard.IsKeyDown(Key.Left))
+      {
+        xPosition -= CONST_PLAYER_SPEED;
+        if (xPosition < 0)
+        {
+          xPosition = 0;
+        }
+      }
     }
   }
+  //</Tommy Bouffard>
 }
 //</Charles Lachance>

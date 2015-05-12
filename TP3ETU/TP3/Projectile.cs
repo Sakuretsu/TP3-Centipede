@@ -39,7 +39,7 @@ namespace TP3
 
     public void Update()
     {
-      yPosition = yPosition + SHOT_SPEED;
+      yPosition = yPosition - SHOT_SPEED;
     }
   }
 }

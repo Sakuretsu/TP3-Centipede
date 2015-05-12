@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Windows.Input;
 
 namespace TP3
 {
@@ -9,6 +10,8 @@ namespace TP3
     //<Tommy Bouffard>
     private List<Mushroom> mushrooms = new List<Mushroom>(); 
     private Random rnd = new Random();
+    private List<Projectile> bullets = new List<Projectile>();
+    Player player = new Player();
     public const int NB_HORIZONTAL_BLOCKS = 35;
     public const int NB_VERTICAL_BLOCKS = 40;
     public const int OBJECT_SIZE = 16;
@@ -62,6 +65,20 @@ namespace TP3
       //<Charles Lachance>
       snake.Update(mushrooms);
       //</charles Lachance>
+      player.Update();
+      if (Keyboard.IsKeyDown(Key.Space)&&player.PlayerHasFired ==false)
+      {
+        player.PlayerHasFired = true;
+        bullets.Add(player.Fire());
+      }
+      else if (Keyboard.IsKeyUp(Key.Space))
+      {
+        player.PlayerHasFired = false;
+      }
+      foreach(Projectile shot in bullets)
+      {
+        shot.Update();
+      }
     }
     
     public void Draw(Graphics g)
@@ -71,8 +88,12 @@ namespace TP3
       {
         mush.Draw(g);
       }
+      player.Draw(g);
+      foreach (Projectile shot in bullets)
+      {
+        shot.Draw(g);
+      }
       //</Tommy Bouffard>
-
       snake.Draw(g);
     }
   }

@@ -91,6 +91,7 @@
   <ItemGroup>
     <Content Include="Images\Player.bmp" />
     <Content Include="Images\SnakePart.bmp" />
+    <Content Include="Images\Spider.png" />
     <None Include="Images\Bullet.png" />
     <None Include="Images\Mushroom.png" />
   </ItemGroup>
