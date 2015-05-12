@@ -1,4 +1,4 @@
-﻿
+﻿//<Charles Lachance>
 namespace TP3
 {
   enum Direction
@@ -8,3 +8,4 @@ namespace TP3
     Undefined = 0
   }
 }
+//</Charles Lachance>

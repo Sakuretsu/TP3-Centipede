@@ -28,7 +28,12 @@ namespace TP3
         throw new ArgumentOutOfRangeException("La longueur du serpent ne peut pas être négative");
       }
 
-      bodyParts = new List<Point>(length);
+      bodyParts = new List<Point>(0);
+      for (int i = 0; i < length; i++)
+      {
+        bodyParts.Add(new Point(35, 0));
+      }
+
       direction = Direction.Left;
     }
 
@@ -57,12 +62,7 @@ namespace TP3
 
     public void Update(List<Mushroom> mushrooms)
     {
-      Point newPart = new Point(35, 0);
-      if (bodyParts.Count() > 0)
-      {
-        newPart = bodyParts[bodyParts.Count() - 1];
-      }
-
+      Point newPart = bodyParts[bodyParts.Count() - 1];
       newPart.X += (int)direction;
 
       if (newPart.X < 0 || newPart.X >= MillipedeGame.NB_HORIZONTAL_BLOCKS)
@@ -97,8 +97,7 @@ namespace TP3
 
       bodyParts.Add(newPart);
 
-      if (bodyParts.Capacity == bodyParts.Count)
-        bodyParts.RemoveAt(0);
+      bodyParts.RemoveAt(0);
     }
 
     public Point this[int index]
