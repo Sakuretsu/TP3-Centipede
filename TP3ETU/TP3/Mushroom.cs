@@ -7,6 +7,7 @@ namespace TP3
   {
     private int xPosition = 0;
     private int yPosition = 0;
+    Rectangle size = new Rectangle();
     public int YPosition
     {
       get
@@ -25,6 +26,7 @@ namespace TP3
     {
       xPosition = x;
       yPosition = y;
+      size = new Rectangle(xPosition * MillipedeGame.OBJECT_SIZE, yPosition * MillipedeGame.OBJECT_SIZE,MillipedeGame.OBJECT_SIZE,MillipedeGame.OBJECT_SIZE);
     }
     public void Draw(Graphics g)
     {

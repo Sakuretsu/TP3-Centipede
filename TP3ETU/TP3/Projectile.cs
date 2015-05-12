@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿//<Tommy Bouffard>
+using System.Drawing;
 
 namespace TP3
 {
@@ -35,5 +36,11 @@ namespace TP3
     {
       g.DrawImage(Properties.Resources.Bullet, new Point(xPosition, yPosition));
     }
+
+    public void Update()
+    {
+      yPosition = yPosition + SHOT_SPEED;
+    }
   }
 }
+//</Tommy Bouffard>
