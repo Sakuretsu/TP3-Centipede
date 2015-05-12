@@ -14,7 +14,9 @@ namespace TP3
     int xPosition = 0;
     int yPosition = 0;
     bool playerHasFired = false;
-    public int CONST_PLAYER_SPEED = 10;
+    public const int PLAYER_HEIGHT = 32;
+    public const int PLAYER_WIDTH = 32;
+    public int PLAYER_SPEED = 10;
     public int NbLives
     {
       get
@@ -27,6 +29,10 @@ namespace TP3
       get
       {
         return ammoRemaining;
+      }
+      set
+      {
+        ammoRemaining = value;
       }
     }
     public bool PlayerHasFired
