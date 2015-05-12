@@ -45,6 +45,7 @@
       this.BackColor = System.Drawing.Color.Black;
       this.ClientSize = new System.Drawing.Size(284, 262);
       this.DoubleBuffered = true;
+      this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
       this.MaximizeBox = false;
       this.MinimizeBox = false;
       this.Name = "MillipedeGameForm";

@@ -10,7 +10,6 @@ namespace TP3
   class Snake
   {
     private List<Point> bodyParts = null;
-    private int maxLength = 0;
     private Direction direction = Direction.Undefined;
 
     public void Draw(Graphics g)
@@ -60,44 +59,49 @@ namespace TP3
       }
     }
 
-    public void Update(List<Mushroom> mushrooms)
+    public bool Update(List<Mushroom> mushrooms)
     {
       Point newPart = bodyParts[bodyParts.Count() - 1];
       newPart.X += (int)direction;
 
+      foreach (Mushroom mushroom in mushrooms)
+      {
+        if (newPart.X == mushroom.XPosition && newPart.Y == mushroom.YPosition)
+        {
+          GoDown(ref newPart);
+          break;
+        }
+      }
+
       if (newPart.X < 0 || newPart.X >= MillipedeGame.NB_HORIZONTAL_BLOCKS)
       {
-        newPart.X -= (int)direction;
-        newPart.Y++;
+        GoDown(ref newPart);
+      }
 
-        if (direction == Direction.Left)
-          direction = Direction.Right;
-        else
-          direction = Direction.Left;
+      if (newPart.Y > MillipedeGame.NB_VERTICAL_BLOCKS)
+      {
+        bodyParts.Clear();
       }
       else
       {
-        foreach (Mushroom mushroom in mushrooms)
-        {
-          if (newPart.X == mushroom.XPosition && newPart.Y == mushroom.YPosition)
-          {
-            newPart.X -= (int)direction;
-            newPart.Y++;
-
-            if (direction == Direction.Left)
-              direction = Direction.Right;
-            else
-              direction = Direction.Left;
-
-            break;
-          }
-        }
+        bodyParts.Add(newPart);
+        bodyParts.RemoveAt(0);
       }
       
+      if (bodyParts.Count() == 0)
+        return false;
+      return true;
+    }
 
-      bodyParts.Add(newPart);
+    private void GoDown(ref Point pt)
+    {
+      pt.X -= (int)direction;
+      pt.Y++;
 
-      bodyParts.RemoveAt(0);
+      if (direction == Direction.Left)
+        direction = Direction.Right;
+      else
+        direction = Direction.Left;
     }
 
     public Point this[int index]
