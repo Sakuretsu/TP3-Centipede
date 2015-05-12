@@ -12,6 +12,16 @@ namespace TP3
     private List<Point> bodyParts = null;
     private Direction direction = Direction.Undefined;
 
+    public int Length
+    {
+      get
+      {
+        return bodyParts.Count();
+      }
+
+      private set { }
+    }
+
     public void Draw(Graphics g)
     {
       foreach (Point part in bodyParts)
@@ -61,6 +71,8 @@ namespace TP3
 
     public bool Update(List<Mushroom> mushrooms)
     {
+      if (bodyParts.Count() == 0)
+        return false;
       Point newPart = bodyParts[bodyParts.Count() - 1];
       newPart.X += (int)direction;
 
@@ -87,9 +99,7 @@ namespace TP3
         bodyParts.Add(newPart);
         bodyParts.RemoveAt(0);
       }
-      
-      if (bodyParts.Count() == 0)
-        return false;
+
       return true;
     }
 
