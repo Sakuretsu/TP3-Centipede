@@ -5,7 +5,7 @@ namespace TP3
 {
   class Projectile
   {
-    public const int SHOT_SPEED = 20;
+    public const int SHOT_SPEED = 16;
     public const int SHOT_WIDTH = 6;
     public const int SHOT_HEIGHT = 8;
     private int yPosition = 0;

@@ -55,10 +55,10 @@ namespace TP3
     }
     public Projectile Fire()
     {
-      if (ammoRemaining>0)
+      if (ammoRemaining > 0)
       {
         ammoRemaining--;
-        return new Projectile(xPosition+MillipedeGame.OBJECT_SIZE, yPosition);
+        return new Projectile(xPosition + MillipedeGame.OBJECT_SIZE, yPosition);
       }
       else
       {
@@ -73,7 +73,7 @@ namespace TP3
     {
       if(Keyboard.IsKeyDown(Key.Down))
       {
-        yPosition += CONST_PLAYER_SPEED;
+        yPosition += PLAYER_SPEED;
         if (yPosition> MillipedeGame.GAME_HEIGHT-MillipedeGame.OBJECT_SIZE*2)
         {
           yPosition = MillipedeGame.GAME_HEIGHT - MillipedeGame.OBJECT_SIZE * 2;
@@ -81,7 +81,7 @@ namespace TP3
       }
       if (Keyboard.IsKeyDown(Key.Up))
       {
-        yPosition -= CONST_PLAYER_SPEED;
+        yPosition -= PLAYER_SPEED;
         if (yPosition < 0)
         {
           yPosition = 0;
@@ -89,7 +89,7 @@ namespace TP3
       }
       if (Keyboard.IsKeyDown(Key.Right))
       {
-        xPosition += CONST_PLAYER_SPEED;
+        xPosition += PLAYER_SPEED;
         if (xPosition > MillipedeGame.GAME_WIDTH-MillipedeGame.OBJECT_SIZE*2)
         {
           xPosition = MillipedeGame.GAME_WIDTH - MillipedeGame.OBJECT_SIZE * 2;
@@ -97,7 +97,7 @@ namespace TP3
       }
       if (Keyboard.IsKeyDown(Key.Left))
       {
-        xPosition -= CONST_PLAYER_SPEED;
+        xPosition -= PLAYER_SPEED;
         if (xPosition < 0)
         {
           xPosition = 0;
