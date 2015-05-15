@@ -80,7 +80,6 @@ namespace TP3
           snakes.RemoveAt(i);
         }
       }
-
       Rectangle rect1 = new Rectangle();
       rect1.Height = OBJECT_SIZE;
       rect1.Width = OBJECT_SIZE;
@@ -115,7 +114,6 @@ namespace TP3
           }
         }
       }
-
       if (snakes.Count == 0)
       {
         snakes.Add(new Snake(rnd.Next(8, 12)));
@@ -124,7 +122,7 @@ namespace TP3
       //</charles Lachance>
       //<Tommy Bouffard>
       player.Update();
-      if (rnd.Next(0,101) == 100)
+      if (rnd.Next(0, 251) == 250)
       {
         spiders.Add(new Spider());
       }
@@ -175,10 +173,11 @@ namespace TP3
           {
             spidersToRemove.Add(spiders[i]);
             bulletsToRemove.Add(bullets[j]);
+            mushrooms.Add(new Mushroom((int)(spiders[i].XPosition / OBJECT_SIZE), (int)(spiders[i].YPosition / OBJECT_SIZE)));
             score += 3;
             break;
           }
-          else if (spiders[i].XPosition<0-OBJECT_SIZE*2 || spiders[i].XPosition>GAME_WIDTH)
+          if (spiders[i].XPosition<0-OBJECT_SIZE*2 || spiders[i].XPosition>GAME_WIDTH)
           {
             spidersToRemove.Add(spiders[i]);
             break;
@@ -202,26 +201,15 @@ namespace TP3
     {
       foreach (Spider spider in spiders)
       {
-        if (spider.XSpeed<0 && spider.YPosition<spider.XTarget)
+        if (spider.NbUpdates%Spider.nbUpdatesBeforeTargetChange == 0)
         {
-          if (rnd.Next(0,11)==10)
+          if (rnd.Next(0,11) == 10)
           {
-            spider.GetPlayerAsTarget(player.XPosition, player.XPosition);
+            spider.SetPlayerAsTarget(player.XPosition, player.YPosition);
           }
           else
           {
-            spider.GetRandomTarget();
-          }
-        }
-        else if (spider.XSpeed>0 && spider.XPosition>spider.XTarget)
-        {
-          if (rnd.Next(0, 11) == 10)
-          {
-            spider.GetPlayerAsTarget(player.XPosition, player.XPosition);
-          }
-          else
-          {
-            spider.GetRandomTarget();
+            spider.SetRandomTarget();
           }
         }
       }

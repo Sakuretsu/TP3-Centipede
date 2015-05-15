@@ -12,7 +12,8 @@ namespace TP3
     private int xTarget = 0;
     private float xSpeed = 0;
     private float ySpeed = 0;
-    private const int nbUpdatesBeforeReachingTarget = 40;
+    public const int nbUpdatesBeforeTargetChange = 40;
+    private int nbUpdates = 0;
     public const int nbGetPlayerTargetDivider = 10;
     Random rnd = new Random();
 
@@ -22,9 +23,13 @@ namespace TP3
       {
         return yPosition;
       }
-      set
+    }
+
+    public int NbUpdates
+    {
+      get
       {
-        yPosition = value;
+        return nbUpdates;
       }
     }
     public float XPosition
@@ -32,10 +37,6 @@ namespace TP3
       get
       {
         return xPosition;
-      }
-      set
-      {
-        xPosition = value;
       }
     }
 
@@ -76,12 +77,13 @@ namespace TP3
       }
     }
 
-    public void GetRandomTarget()
+    public void SetRandomTarget()
     {
       xTarget = rnd.Next(0, MillipedeGame.GAME_WIDTH);
       yTarget = rnd.Next(MillipedeGame.GAME_HEIGHT/3, MillipedeGame.GAME_HEIGHT);
-      xSpeed = ((float)xTarget - (float)xPosition) / (float)nbUpdatesBeforeReachingTarget;
-      ySpeed = ((float)yTarget - (float)yPosition) / (float)nbUpdatesBeforeReachingTarget;
+      xSpeed = ((float)xTarget - (float)xPosition) / (float)nbUpdatesBeforeTargetChange;
+      ySpeed = ((float)yTarget - (float)yPosition) / (float)nbUpdatesBeforeTargetChange;
+      Logger.GetInstance().Log("Is targetting random ");
     }
 
     public Spider()
@@ -95,21 +97,23 @@ namespace TP3
         xPosition = MillipedeGame.GAME_WIDTH;
       }
       yPosition = 2 * MillipedeGame.GAME_HEIGHT / 3;
-      GetRandomTarget();
+      SetRandomTarget();
     }
 
-    public void GetPlayerAsTarget(int playerX, int playerY)
+    public void SetPlayerAsTarget(int playerX, int playerY)
     {
       yTarget = playerY;
       xTarget = playerX;
-      xSpeed = ((float)xTarget - (float)xPosition) / (float)nbUpdatesBeforeReachingTarget;
-      ySpeed = ((float)yTarget - (float)yPosition) / (float)nbUpdatesBeforeReachingTarget;
+      xSpeed = ((float)xTarget - (float)xPosition) / (float)nbUpdatesBeforeTargetChange;
+      ySpeed = ((float)yTarget - (float)yPosition) / (float)nbUpdatesBeforeTargetChange;
+      Logger.GetInstance().Log("Is targetting player at ");
     }
 
     public void Update()
     {
       xPosition += xSpeed;
       yPosition += ySpeed;
+      nbUpdates++;
     }
 
     public void Draw(Graphics g)
