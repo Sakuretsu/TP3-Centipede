@@ -36,5 +36,10 @@ namespace TP3
       game.Update( );
       Invalidate( );
     }
+
+    private void RechargeGun(object sender, EventArgs e)
+    {
+
+    }
   }
 }
