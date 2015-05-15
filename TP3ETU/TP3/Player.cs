@@ -24,6 +24,20 @@ namespace TP3
         return nbLives;
       }
     }
+    public int XPosition
+    {
+      get
+      {
+        return xPosition;
+      }
+    }
+    public int YPosition
+    {
+      get
+      {
+        return yPosition;
+      }
+    }
     public int Ammo
     {
       get
@@ -55,10 +69,10 @@ namespace TP3
     }
     public Projectile Fire()
     {
-      if (ammoRemaining > 0)
+      if (ammoRemaining>0)
       {
         ammoRemaining--;
-        return new Projectile(xPosition + MillipedeGame.OBJECT_SIZE, yPosition);
+        return new Projectile(xPosition+MillipedeGame.OBJECT_SIZE, yPosition);
       }
       else
       {
