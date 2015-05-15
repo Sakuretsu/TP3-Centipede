@@ -134,23 +134,17 @@ namespace TP3
       {
         spiders.Add(new Spider());
       }
-      if (Keyboard.IsKeyDown(Key.Space) && player.PlayerHasFired == false)
+      foreach (Projectile shot in bullets)
       {
-        player.PlayerHasFired = true;
+        shot.Update();
+      }
+      if (Keyboard.IsKeyDown(Key.Space))
+      {
         //<charles Lachance>
         if (player.Ammo <= BulletPowerup.MIN_AMMO_TO_SPAWN && powerup == null)
           powerup = new BulletPowerup();
         //</charles Lachance>
         bullets.Add(player.Fire());
-      }
-      else if (Keyboard.IsKeyUp(Key.Space))
-      {
-        player.PlayerHasFired = false;
-      }
-
-      foreach(Projectile shot in bullets)
-      {
-        shot.Update();
       }
       foreach(Spider spider in spiders)
       {
@@ -258,7 +252,6 @@ namespace TP3
       {
         snake.Draw(g);
       }
-
       if (powerup != null)
         powerup.Draw(g);
       //</Charles Lachance>

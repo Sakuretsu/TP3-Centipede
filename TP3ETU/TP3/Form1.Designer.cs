@@ -31,7 +31,6 @@
       this.components = new System.ComponentModel.Container();
       this.mainTimer = new System.Windows.Forms.Timer(this.components);
       this.labelScore = new System.Windows.Forms.Label();
-      this.TimerGunCharging = new System.Windows.Forms.Timer(this.components);
       this.SuspendLayout();
       // 
       // mainTimer
@@ -51,10 +50,6 @@
       this.labelScore.Size = new System.Drawing.Size(148, 45);
       this.labelScore.TabIndex = 0;
       this.labelScore.Text = "Score: 0";
-      // 
-      // TimerGunCharging
-      // 
-      this.TimerGunCharging.Tick += new System.EventHandler(this.RechargeGun);
       // 
       // MillipedeGameForm
       // 
@@ -80,6 +75,5 @@
 
     private System.Windows.Forms.Timer mainTimer;
     private System.Windows.Forms.Label labelScore;
-    private System.Windows.Forms.Timer TimerGunCharging;
   }
 }
