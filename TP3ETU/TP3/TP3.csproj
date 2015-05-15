@@ -46,6 +46,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BulletPowerup.cs" />
     <Compile Include="Direction.cs" />
     <Compile Include="LeaderboardForm.cs">
       <SubType>Form</SubType>
@@ -100,6 +101,7 @@
   <ItemGroup>
     <Content Include="Images\Player.bmp" />
     <Content Include="Images\SnakePart.bmp" />
+    <None Include="Resources\BulletPowerup.png" />
     <None Include="Images\Spider.png" />
     <None Include="Images\Bullet.png" />
     <None Include="Images\Mushroom.png" />
