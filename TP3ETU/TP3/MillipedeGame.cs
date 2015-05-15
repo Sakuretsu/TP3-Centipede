@@ -79,9 +79,10 @@ namespace TP3
     // ppoulin
     // Vous aurez assurément à modidier le type de retour ici pour un EndGameResult.
     // Je n'ai pas pu le faire car il fallait que ça compile.
-    public void Update()
+    public EndGameResult Update()
     {
       //<Charles Lachance>
+
       for (int i = 0; i < snakes.Count; i++)
       {
         if (!snakes[i].Update(mushrooms))
@@ -89,13 +90,13 @@ namespace TP3
           snakes.RemoveAt(i);
         }
       }
-      Rectangle rect1 = new Rectangle();
-      rect1.Height = OBJECT_SIZE;
-      rect1.Width = OBJECT_SIZE;
+      Rectangle snakeRect = new Rectangle();
+      snakeRect.Height = OBJECT_SIZE;
+      snakeRect.Width = OBJECT_SIZE;
 
-      Rectangle rect2 = new Rectangle();
-      rect2.Height = Projectile.SHOT_HEIGHT;
-      rect2.Width = Projectile.SHOT_WIDTH;
+      Rectangle playerRect = new Rectangle();
+      playerRect.Height = Player.PLAYER_HEIGHT;
+      playerRect.Width = Player.PLAYER_WIDTH;
       
       for (int i = 0; i < snakes.Count; i++)
       {
@@ -103,6 +104,8 @@ namespace TP3
         {
           for (int k = 0; k < bullets.Count; k++)
           {
+            if (CheckIntersectionBetweenRectangle(snakeRect, playerRect))
+              player.NbLives--;
             if (snakes[i][j].X == bullets[k].XPosition / OBJECT_SIZE && snakes[i][j].Y == bullets[k].YPosition / OBJECT_SIZE)
             {
               Snake snake1 = new Snake(0);
@@ -152,9 +155,19 @@ namespace TP3
       {
         shot.Update();
       }
+
+      //<charles Lachance>
+      Rectangle spiderRect = new Rectangle();
+      spiderRect.Height = Spider.HEIGHT;
+      spiderRect.Width = Spider.WIDTH;
+      //</charles Lachance>
       foreach(Spider spider in spiders)
       {
         spider.Update();
+        //<charles Lachance>
+        if (CheckIntersectionBetweenRectangle(spiderRect, playerRect))
+          player.NbLives--;
+        //</charles Lachance>
       }
 
       if (powerup != null && powerup.Update(player))
@@ -162,6 +175,12 @@ namespace TP3
 
       RemoveShotEntities();
       RandomizeSpiders();
+
+      //<charles Lachance>
+      if (player.NbLives <= 0)
+        return EndGameResult.GAME_LOST;
+      return EndGameResult.GAME_CONTINUE;
+      //</charles Lachance>
     }
 
     public void RemoveShotEntities()

@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="BulletPowerup.cs" />
     <Compile Include="Direction.cs" />
+    <Compile Include="EndGameResult.cs" />
     <Compile Include="LeaderboardForm.cs">
       <SubType>Form</SubType>
     </Compile>
