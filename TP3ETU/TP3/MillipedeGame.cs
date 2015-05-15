@@ -1,4 +1,4 @@
-ï»¿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Input;
@@ -57,11 +57,11 @@ namespace TP3
     }
 
     /// <summary>
-    /// VÃ©rifie si deux rectangles ont une intersection commune.
+    /// Vérifie si deux rectangles ont une intersection commune.
     /// </summary>
     /// <param name="r1">Le premier rectangle</param>
     /// <param name="r2">Le second rectangle</param>
-    /// <returns>true si les deux rectangles s'intersectent, false sinon. Note: La mÃ©thode 
+    /// <returns>true si les deux rectangles s'intersectent, false sinon. Note: La méthode 
     /// retourne true si l'intersection se produit uniquement au niveau des bordures.</returns>
     public static bool CheckIntersectionBetweenRectangle(RectangleF r1, RectangleF r2)
     {
@@ -77,8 +77,8 @@ namespace TP3
     }
 
     // ppoulin
-    // Vous aurez assurÃ©ment Ã  modidier le type de retour ici pour un EndGameResult.
-    // Je n'ai pas pu le faire car il fallait que Ã§a compile.
+    // Vous aurez assurément à modidier le type de retour ici pour un EndGameResult.
+    // Je n'ai pas pu le faire car il fallait que ça compile.
     public EndGameResult Update()
     {
       //<Charles Lachance>
@@ -137,23 +137,17 @@ namespace TP3
       {
         spiders.Add(new Spider());
       }
-      if (Keyboard.IsKeyDown(Key.Space) && player.PlayerHasFired == false)
+      foreach (Projectile shot in bullets)
       {
-        player.PlayerHasFired = true;
+        shot.Update();
+      }
+      if (Keyboard.IsKeyDown(Key.Space))
+      {
         //<charles Lachance>
         if (player.Ammo <= BulletPowerup.MIN_AMMO_TO_SPAWN && powerup == null)
           powerup = new BulletPowerup();
         //</charles Lachance>
         bullets.Add(player.Fire());
-      }
-      else if (Keyboard.IsKeyUp(Key.Space))
-      {
-        player.PlayerHasFired = false;
-      }
-
-      foreach(Projectile shot in bullets)
-      {
-        shot.Update();
       }
 
       //<charles Lachance>
@@ -277,7 +271,6 @@ namespace TP3
       {
         snake.Draw(g);
       }
-
       if (powerup != null)
         powerup.Draw(g);
       //</Charles Lachance>

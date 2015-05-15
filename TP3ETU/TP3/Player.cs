@@ -1,4 +1,4 @@
-﻿//<Charles Lachance>
+//<Charles Lachance>
 using System;
 using System.Drawing;
 using System.IO;
@@ -9,6 +9,7 @@ namespace TP3
   class Player
   {
     //<Tommy Bouffard>
+    DateTime lastTimeFired = DateTime.Now;
     int nbLives = 3;
     int ammoRemaining = 20;
     int xPosition = 0;
@@ -73,14 +74,15 @@ namespace TP3
     }
     public Projectile Fire()
     {
-      if (ammoRemaining > 0)
+      if (ammoRemaining > 0 && lastTimeFired.AddMilliseconds(500) < DateTime.Now)
       {
+        lastTimeFired = DateTime.Now;
         ammoRemaining--;
         return new Projectile(xPosition+MillipedeGame.OBJECT_SIZE, yPosition);
       }
       else
       {
-        return new Projectile(-100, -100);
+        return new Projectile(250, -100);
       }
     }
 

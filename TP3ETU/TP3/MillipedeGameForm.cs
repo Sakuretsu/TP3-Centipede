@@ -40,10 +40,5 @@ namespace TP3
 
       Invalidate( );
     }
-
-    private void RechargeGun(object sender, EventArgs e)
-    {
-
-    }
   }
 }
