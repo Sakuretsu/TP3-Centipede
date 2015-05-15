@@ -109,6 +109,7 @@ namespace TP3
               snakes.RemoveAt(i);
               snakes.Add(snake1);
               snakes.Add(snake2);
+              score += 1;
               break;
             }
           }
@@ -170,10 +171,11 @@ namespace TP3
         for (int i = 0; i != spiders.Count; i++)
         {
           if (CheckIntersectionBetweenRectangle(new RectangleF(spiders[i].XPosition, spiders[i].YPosition, OBJECT_SIZE * 2, OBJECT_SIZE * 2),
-          new RectangleF(bullets[j].XPosition, bullets[j].YPosition, Projectile.SHOT_WIDTH, Projectile.SHOT_HEIGHT)))
+             new RectangleF(bullets[j].XPosition, bullets[j].YPosition, Projectile.SHOT_WIDTH, Projectile.SHOT_HEIGHT)))
           {
             spidersToRemove.Add(spiders[i]);
             bulletsToRemove.Add(bullets[j]);
+            score += 3;
             break;
           }
           else if (spiders[i].XPosition<0-OBJECT_SIZE*2 || spiders[i].XPosition>GAME_WIDTH)
@@ -196,7 +198,6 @@ namespace TP3
         spiders.Remove(spiderMan);
       }
     }
-
     public void RandomizeSpiders()
     {
       foreach (Spider spider in spiders)
