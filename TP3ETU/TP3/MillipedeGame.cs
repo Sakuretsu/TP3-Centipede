@@ -97,15 +97,19 @@ namespace TP3
       Rectangle playerRect = new Rectangle();
       playerRect.Height = Player.PLAYER_HEIGHT;
       playerRect.Width = Player.PLAYER_WIDTH;
+      playerRect.X = player.XPosition;
+      playerRect.Y = player.YPosition;
       
       for (int i = 0; i < snakes.Count; i++)
       {
         for (int j = 0; j < snakes[i].Length; j++)
         {
+          snakeRect.X = snakes[i][j].X * OBJECT_SIZE;
+          snakeRect.Y = snakes[i][j].Y * OBJECT_SIZE;
+          if (CheckIntersectionBetweenRectangle(snakeRect, playerRect))
+            player.NbLives--;
           for (int k = 0; k < bullets.Count; k++)
           {
-            if (CheckIntersectionBetweenRectangle(snakeRect, playerRect))
-              player.NbLives--;
             if (snakes[i][j].X == bullets[k].XPosition / OBJECT_SIZE && snakes[i][j].Y == bullets[k].YPosition / OBJECT_SIZE)
             {
               Snake snake1 = new Snake(0);
@@ -152,13 +156,15 @@ namespace TP3
 
       //<charles Lachance>
       Rectangle spiderRect = new Rectangle();
-      spiderRect.Height = Spider.HEIGHT;
-      spiderRect.Width = Spider.WIDTH;
+      spiderRect.Height = Spider.SPIDER_SIZE;
+      spiderRect.Width = Spider.SPIDER_SIZE;
       //</charles Lachance>
       foreach(Spider spider in spiders)
       {
         spider.Update();
         //<charles Lachance>
+        spiderRect.X = (int)spider.XPosition;
+        spiderRect.Y = (int)spider.YPosition;
         if (CheckIntersectionBetweenRectangle(spiderRect, playerRect))
           player.NbLives--;
         //</charles Lachance>
