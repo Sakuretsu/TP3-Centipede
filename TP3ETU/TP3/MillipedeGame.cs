@@ -11,18 +11,27 @@ namespace TP3
     private List<Mushroom> mushrooms = new List<Mushroom>(); 
     private Random rnd = new Random();
     private List<Projectile> bullets = new List<Projectile>();
-    Player player = new Player();
+    private List<Spider> spiders = new List<Spider>();
+    private Player player = new Player();
     public const int NB_HORIZONTAL_BLOCKS = 35;
     public const int NB_VERTICAL_BLOCKS = 40;
     public const int OBJECT_SIZE = 16;
     public const int GAME_WIDTH = OBJECT_SIZE*NB_HORIZONTAL_BLOCKS;
     public const int GAME_HEIGHT = OBJECT_SIZE* NB_VERTICAL_BLOCKS;
     public const int NB_STARTING_MUSHROOM = 40;
+    private int score = 0;
     //</Tommy Bouffard>
     //<Charles Lachance>
     private Snake snake = null;
     //</Charles Lachance>
 
+    public int Score
+    {
+      get
+      {
+        return score;
+      }
+    }
     public MillipedeGame( )
     {
       //<Tommy Bouffard
@@ -65,7 +74,12 @@ namespace TP3
       //<Charles Lachance>
       snake.Update(mushrooms);
       //</charles Lachance>
+      //<Tommy Bouffard>
       player.Update();
+      if (rnd.Next(0,101) == 100)
+      {
+        spiders.Add(new Spider());
+      }
       if (Keyboard.IsKeyDown(Key.Space)&&player.PlayerHasFired ==false)
       {
         player.PlayerHasFired = true;
@@ -79,8 +93,91 @@ namespace TP3
       {
         shot.Update();
       }
+      foreach(Spider spider in spiders)
+      {
+        spider.Update();
+      }
+      RemoveShotEntities();
+      RandomizeSpiders();
     }
-    
+
+    public void RemoveShotEntities()
+    {
+
+      List<Mushroom> mushroomsToRemove = new List<Mushroom>();
+      List<Projectile> bulletsToRemove = new List<Projectile>();
+      List<Spider> spidersToRemove = new List<Spider>();
+      for (int j = 0; j != bullets.Count; j++)
+      {
+        for (int i = 0; i != mushrooms.Count; i++)
+        {
+          if (CheckIntersectionBetweenRectangle(new RectangleF(mushrooms[i].XPosition * OBJECT_SIZE, mushrooms[i].YPosition * OBJECT_SIZE, OBJECT_SIZE, OBJECT_SIZE),
+            new RectangleF(bullets[j].XPosition, bullets[j].YPosition, Projectile.SHOT_WIDTH, Projectile.SHOT_HEIGHT)))
+          {
+            mushroomsToRemove.Add(mushrooms[i]);
+            bulletsToRemove.Add(bullets[j]);
+            break;
+          }
+        }
+        for (int i = 0; i != spiders.Count; i++)
+        {
+          if (CheckIntersectionBetweenRectangle(new RectangleF(spiders[i].XPosition, spiders[i].YPosition, OBJECT_SIZE * 2, OBJECT_SIZE * 2),
+          new RectangleF(bullets[j].XPosition, bullets[j].YPosition, Projectile.SHOT_WIDTH, Projectile.SHOT_HEIGHT)))
+          {
+            spidersToRemove.Add(spiders[i]);
+            bulletsToRemove.Add(bullets[j]);
+            break;
+          }
+          else if (spiders[i].XPosition<0-OBJECT_SIZE*2 || spiders[i].XPosition>GAME_WIDTH)
+          {
+            spidersToRemove.Add(spiders[i]);
+            break;
+          }
+        }
+      }
+      foreach (Projectile shot in bulletsToRemove)
+      {
+        bullets.Remove(shot);
+      }
+      foreach (Mushroom mush in mushroomsToRemove)
+      {
+        mushrooms.Remove(mush);
+      }
+      foreach (Spider spiderMan in spidersToRemove)
+      {
+        spiders.Remove(spiderMan);
+      }
+    }
+
+    public void RandomizeSpiders()
+    {
+      foreach (Spider spider in spiders)
+      {
+        if (spider.XSpeed<0 && spider.YPosition<spider.XTarget)
+        {
+          if (rnd.Next(0,11)==10)
+          {
+            spider.GetPlayerAsTarget(player.XPosition, player.XPosition);
+          }
+          else
+          {
+            spider.GetRandomTarget();
+          }
+        }
+        else if (spider.XSpeed>0 && spider.XPosition>spider.XTarget)
+        {
+          if (rnd.Next(0, 11) == 10)
+          {
+            spider.GetPlayerAsTarget(player.XPosition, player.XPosition);
+          }
+          else
+          {
+            spider.GetRandomTarget();
+          }
+        }
+      }
+    }
+    //</Tommy Bouffard>
     public void Draw(Graphics g)
     {
       //<Tommy Bouffard>
@@ -92,6 +189,10 @@ namespace TP3
       foreach (Projectile shot in bullets)
       {
         shot.Draw(g);
+      }
+      foreach (Spider spiderMan in spiders)
+      {
+        spiderMan.Draw(g);
       }
       //</Tommy Bouffard>
       snake.Draw(g);

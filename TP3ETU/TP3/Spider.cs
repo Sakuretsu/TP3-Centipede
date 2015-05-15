@@ -78,7 +78,6 @@ namespace TP3
 
     public void GetRandomTarget()
     {
-      //Sujet aux changements: requiert la taille de l'écran
       xTarget = rnd.Next(0, MillipedeGame.GAME_WIDTH);
       yTarget = rnd.Next(MillipedeGame.GAME_HEIGHT/3, MillipedeGame.GAME_HEIGHT);
       xSpeed = ((float)xTarget - (float)xPosition) / (float)nbUpdatesBeforeReachingTarget;
