@@ -12,6 +12,7 @@ namespace TP3
     private int xTarget = 0;
     private float xSpeed = 0;
     private float ySpeed = 0;
+    private int SPIDER_SIZE = 32;
     public const int nbUpdatesBeforeTargetChange = 40;
     private int nbUpdates = 0;
     public const int nbGetPlayerTargetDivider = 10;
