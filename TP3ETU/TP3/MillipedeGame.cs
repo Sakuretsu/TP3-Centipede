@@ -33,6 +33,13 @@ namespace TP3
         return score;
       }
     }
+    public Player Player
+    {
+      get
+      {
+        return player;
+      }
+    }
     public MillipedeGame( )
     {
       //<Tommy Bouffard
@@ -191,6 +198,10 @@ namespace TP3
             spidersToRemove.Add(spiders[i]);
             break;
           }
+        }
+        if (bullets[j].YPosition < 0)
+        {
+          bulletsToRemove.Add(bullets[j]);
         }
       }
       foreach (Projectile shot in bulletsToRemove)
