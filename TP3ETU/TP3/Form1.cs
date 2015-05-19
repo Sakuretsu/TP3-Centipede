@@ -32,13 +32,9 @@ namespace TP3
     {
       // ppoulin
       // Certainement du code à ajouter ici ou dans le OnDraw
-      labelScore.Text = "Score: " + MillipedeGame.Score;
-      if (game.Update( ) == EndGameResult.GAME_LOST)
-      {
-        Application.Exit();
-      }
-
+      game.Update( );
       Invalidate( );
+
     }
   }
 }

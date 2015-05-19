@@ -8,3 +8,11 @@ d:\WORK HERE NOT IN GITHUB\TP3-Centipede\TP3ETU\TP3\obj\Debug\TP3.Properties.Res
 d:\WORK HERE NOT IN GITHUB\TP3-Centipede\TP3ETU\TP3\obj\Debug\TP3.csproj.GenerateResource.Cache
 d:\WORK HERE NOT IN GITHUB\TP3-Centipede\TP3ETU\TP3\obj\Debug\TP3.exe
 d:\WORK HERE NOT IN GITHUB\TP3-Centipede\TP3ETU\TP3\obj\Debug\TP3.pdb
+d:\Github files\TP3-Centipede\TP3ETU\TP3\bin\Debug\TP3.exe.config
+d:\Github files\TP3-Centipede\TP3ETU\TP3\obj\Debug\TP3.exe
+d:\Github files\TP3-Centipede\TP3ETU\TP3\obj\Debug\TP3.pdb
+d:\Github files\TP3-Centipede\TP3ETU\TP3\obj\Debug\TP3.csprojResolveAssemblyReference.cache
+d:\Github files\TP3-Centipede\TP3ETU\TP3\obj\Debug\TP3.LeaderboardForm.resources
+d:\Github files\TP3-Centipede\TP3ETU\TP3\obj\Debug\TP3.MillipedeGameForm.resources
+d:\Github files\TP3-Centipede\TP3ETU\TP3\obj\Debug\TP3.Properties.Resources.resources
+d:\Github files\TP3-Centipede\TP3ETU\TP3\obj\Debug\TP3.csproj.GenerateResource.Cache
