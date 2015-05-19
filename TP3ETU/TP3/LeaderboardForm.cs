@@ -1,4 +1,6 @@
-﻿using System;
+﻿
+//<Charles Lachance>
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,5 +18,31 @@ namespace TP3
     {
       InitializeComponent();
     }
+
+    private void btnQuitter_Click(object sender, EventArgs e)
+    {
+      Application.Exit();
+    }
+
+    private void btnNouvellePartie_Click(object sender, EventArgs e)
+    {
+      this.Close();
+    }
+
+    private void btnValider_Click(object sender, EventArgs e)
+    {
+      txtbNom.Text = txtbNom.Text.Trim();
+      if (txtbNom.Text != "")
+      {
+        pnlEntrerNom.Visible = false;
+        trvMeilleursScores.Nodes.Add("exemple");
+      }
+    }
+
+    private void trvMeilleursScores_BeforeSelect(object sender, TreeViewCancelEventArgs e)
+    {
+      e.Cancel = true;
+    }
   }
 }
+//</Charles Lachance>
