@@ -271,7 +271,7 @@ namespace TP3
         if (spider.NbUpdates%Spider.nbUpdatesBeforeTargetChange == 0)
         {
           //un dixième du temps l'araignée cible le joueur
-          if (rnd.Next(0,11) == 10)
+          if (rnd.Next(0,Spider.nbUpdatesBeforeTargetChange+1) == Spider.nbUpdatesBeforeTargetChange)
           {
             spider.SetPlayerAsTarget(player.XPosition, player.YPosition);
           }

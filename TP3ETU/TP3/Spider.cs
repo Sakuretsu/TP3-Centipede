@@ -1,4 +1,11 @@
 ﻿//<Tommy Bouffard>
+/* Cette classe contient l'ensemble des fonctionalités de l'araignée dans la partie
+ * 
+ * 
+ * 
+ * 
+ *
+ */
 using System;
 using System.Drawing;
 
@@ -6,26 +13,41 @@ namespace TP3
 {
   class Spider
   {
+    //Position de l'araignée en y.
     private float yPosition = 0;
+    //Position de l'araignée en x.
     private float xPosition = 0;
+    //Position de la cible en y.
     private int yTarget = 0;
+    //Position de la cible en x.
     private int xTarget = 0;
+    //Vitesse de l'araignée en x.
     private float xSpeed = 0;
+    //Vitesse de l'araignée en y.
     private float ySpeed = 0;
+    //Grandeur en pixel de l'araignée.
     public const int SPIDER_SIZE = 32;
+    //Nombre de mise à jours avant d'atteindre la cible.
     public const int nbUpdatesBeforeTargetChange = 40;
+    //Nombre de mise à jours total depuis l'initialisation.
     private int nbUpdates = 0;
+    //Diviseur du nombre de chances de cibler le joueur (si il est égal à 5, le nombre de chances est 1/5.
     public const int nbGetPlayerTargetDivider = 10;
+    //Générateur de nombre aléatoire.
     Random rnd = new Random();
-
+    //Propriétés c# de la position en y
     public float YPosition
     {
       get
       {
         return yPosition;
       }
+      private set
+      {
+        yPosition = value;
+      }
     }
-
+    //Propriétés c# du nombre de mise à jours
     public int NbUpdates
     {
       get
@@ -33,14 +55,19 @@ namespace TP3
         return nbUpdates;
       }
     }
+    //Propriétés c# de la position en x
     public float XPosition
     {
       get
       {
         return xPosition;
       }
+      private set
+      {
+        xPosition = value;
+      }
     }
-
+    //Propriétés c# de la cible en x
     public int XTarget
     {
       get
@@ -52,6 +79,7 @@ namespace TP3
         xTarget = value;
       }
     }
+    //Propriétés c# de la cible en y
     public int YTarget
     {
       get
@@ -63,63 +91,84 @@ namespace TP3
         yTarget = value;
       }
     }
+    //Propriétés c# de la vitesse en X
     public float XSpeed
     {
       get
       {
         return xSpeed;
       }
+      private set
+      {
+        xSpeed = value;
+      }
     }
+    //Propriétés c# de la vitesse en Y
     public float YSpeed
     {
       get
       {
         return ySpeed;
       }
+      private set
+      {
+        ySpeed = value;
+      }
     }
-
+    /// <summary>
+    /// Cette fonction donne une cible aléatoire à l'araignée
+    /// </summary>
     public void SetRandomTarget()
     {
-      xTarget = rnd.Next(0, MillipedeGame.GAME_WIDTH);
-      yTarget = rnd.Next(MillipedeGame.GAME_HEIGHT/3, MillipedeGame.GAME_HEIGHT);
-      xSpeed = ((float)xTarget - (float)xPosition) / (float)nbUpdatesBeforeTargetChange;
-      ySpeed = ((float)yTarget - (float)yPosition) / (float)nbUpdatesBeforeTargetChange;
-      Logger.GetInstance().Log("Is targetting random ");
+      XTarget = rnd.Next(0, MillipedeGame.GAME_WIDTH);
+      YTarget = rnd.Next(MillipedeGame.GAME_HEIGHT/3, MillipedeGame.GAME_HEIGHT);
+      XSpeed = ((float)XTarget - (float)XPosition) / (float)nbUpdatesBeforeTargetChange;
+      YSpeed = ((float)YTarget - (float)YPosition) / (float)nbUpdatesBeforeTargetChange;
     }
-
+    /// <summary>
+    /// Constructeur de l'araignée. Initialise aléatoirement l'araignée (L'araignée commence à un des deux côtés de la partie).
+    /// </summary>
     public Spider()
     {
       if (rnd.Next(1,3) == 1)
       {
-        xPosition = 0;
+        XPosition = 0;
       }
       else
       {
-        xPosition = MillipedeGame.GAME_WIDTH;
+        XPosition = MillipedeGame.GAME_WIDTH;
       }
-      yPosition = 2 * MillipedeGame.GAME_HEIGHT / 3;
+      YPosition = 2 * MillipedeGame.GAME_HEIGHT / 3;
       SetRandomTarget();
     }
-
+    /// <summary>
+    /// Cette fonction change la cible de l'araignée vers une cible donnée (Seulement utilisée pour le joueur).
+    /// </summary>
+    /// <param name="playerX">Position en X (du joueur)</param>
+    /// <param name="playerY">Position en Y (du joueur)</param>
     public void SetPlayerAsTarget(int playerX, int playerY)
     {
-      yTarget = playerY;
-      xTarget = playerX;
-      xSpeed = ((float)xTarget - (float)xPosition) / (float)nbUpdatesBeforeTargetChange;
-      ySpeed = ((float)yTarget - (float)yPosition) / (float)nbUpdatesBeforeTargetChange;
-      Logger.GetInstance().Log("Is targetting player at ");
+      YTarget = playerY;
+      XTarget = playerX;
+      XSpeed = ((float)XTarget - (float)XPosition) / (float)nbUpdatesBeforeTargetChange;
+      YSpeed = ((float)YTarget - (float)YPosition) / (float)nbUpdatesBeforeTargetChange;
     }
-
+    /// <summary>
+    /// Cette fonction met à jour l'araignée.
+    /// </summary>
     public void Update()
     {
-      xPosition += xSpeed;
-      yPosition += ySpeed;
+      XPosition += XSpeed;
+      YPosition += YSpeed;
       nbUpdates++;
     }
-
+    /// <summary>
+    /// Cette fonction dessine l'araignée.
+    /// </summary>
+    /// <param name="g"></param>
     public void Draw(Graphics g)
     {
-      g.DrawImage(Properties.Resources.Spider,xPosition,yPosition);
+      g.DrawImage(Properties.Resources.Spider,XPosition,YPosition);
     }
   }
 }
