@@ -40,6 +40,7 @@ namespace TP3
     //<Charles Lachance>
     private List<Snake> snakes = null;
     private BulletPowerup powerup = null;
+    private int nbOfSnakeSpawned = 0;
     //</Charles Lachance>
     //Propriété c# du pointage
     public static int Score
@@ -72,7 +73,8 @@ namespace TP3
       //</Tommy Bouffard>
       //<Charles Lachance>
       snakes = new List<Snake>();
-      snakes.Add(new Snake(rnd.Next(8, 12)));
+      snakes.Add(new Snake(rnd.Next(Snake.MIN_LENGTH + nbOfSnakeSpawned, Snake.MAX_LENGTH + nbOfSnakeSpawned)));
+      nbOfSnakeSpawned = 1;
       powerup = null;
       //</Charles Lachance>
     }
@@ -84,7 +86,7 @@ namespace TP3
     /// <param name="r2">Le second rectangle</param>
     /// <returns>true si les deux rectangles s'intersectent, false sinon. Note: La méthode 
     /// retourne true si l'intersection se produit uniquement au niveau des bordures.</returns>
-    private static bool CheckIntersectionBetweenRectangle(RectangleF r1, RectangleF r2)
+    public static bool CheckIntersectionBetweenRectangle(RectangleF r1, RectangleF r2)
     {
       float xInter1 = (r1.Left + r1.Width - r2.Left);
       float xInter2 = ((r2.Left + r2.Width) - r1.Left);
@@ -130,6 +132,8 @@ namespace TP3
           if (CheckIntersectionBetweenRectangle(snakeRect, playerRect))
           {
             player.NbLives--;
+            KillAll();
+            break;
           }
             
           for (int k = 0; k < bullets.Count; k++)
@@ -155,7 +159,8 @@ namespace TP3
       }
       if (snakes.Count == 0)
       {
-        snakes.Add(new Snake(rnd.Next(8, 12)));
+        snakes.Add(new Snake(rnd.Next(Snake.MIN_LENGTH + nbOfSnakeSpawned, Snake.MAX_LENGTH + nbOfSnakeSpawned)));
+        nbOfSnakeSpawned++;
       }
 
       //</charles Lachance>
@@ -182,13 +187,18 @@ namespace TP3
       spiderRect.Height = Spider.SPIDER_SIZE;
       spiderRect.Width = Spider.SPIDER_SIZE;
       //<Tommy Bouffard>
-      foreach(Spider spider in spiders)
+      for (int i = 0; i < spiders.Count; i++)
       {
-        spider.Update();
-        spiderRect.X = (int)spider.XPosition;
-        spiderRect.Y = (int)spider.YPosition;
+        spiders[i].Update();
+        spiderRect.X = (int)spiders[i].XPosition;
+        spiderRect.Y = (int)spiders[i].YPosition;
         if (CheckIntersectionBetweenRectangle(spiderRect, playerRect))
+        {
           player.NbLives--;
+          //<charles Lachance>
+          KillAll();
+          //</charles Lachance>
+        }
       }
       //</Tommy Bouffard>
       if (powerup != null && powerup.Update(player))
@@ -270,7 +280,20 @@ namespace TP3
 
     private void KillAll ()
     {
-      while (spiders.)
+      while (spiders.Count != 0)
+      {
+        mushrooms.Add(new Mushroom((int)spiders[0].XPosition/OBJECT_SIZE, (int)spiders[0].YPosition/OBJECT_SIZE));
+        spiders.RemoveAt(0);
+      }
+
+      while (snakes.Count != 0)
+      {
+        for (int i = 0; i < snakes[0].Length; i++)
+        {
+          mushrooms.Add(new Mushroom(snakes[0][i].X, snakes[0][i].Y));
+        }
+        snakes.RemoveAt(0);
+      }
     }
 
     /// <summary>

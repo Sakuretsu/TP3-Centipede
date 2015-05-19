@@ -11,6 +11,8 @@ namespace TP3
   {
     private List<Point> bodyParts = null;
     private Direction direction = Direction.Undefined;
+    public const int MIN_LENGTH = 8;
+    public const int MAX_LENGTH = 12;
 
     public int Length
     {

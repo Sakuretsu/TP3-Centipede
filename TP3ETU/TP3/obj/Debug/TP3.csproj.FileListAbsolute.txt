@@ -16,3 +16,13 @@ d:\Github files\TP3-Centipede\TP3ETU\TP3\obj\Debug\TP3.LeaderboardForm.resources
 d:\Github files\TP3-Centipede\TP3ETU\TP3\obj\Debug\TP3.MillipedeGameForm.resources
 d:\Github files\TP3-Centipede\TP3ETU\TP3\obj\Debug\TP3.Properties.Resources.resources
 d:\Github files\TP3-Centipede\TP3ETU\TP3\obj\Debug\TP3.csproj.GenerateResource.Cache
+F:\TP3-Centipede\TP3ETU\TP3\bin\Debug\TP3.exe.config
+F:\TP3-Centipede\TP3ETU\TP3\obj\Debug\TP3.exe
+F:\TP3-Centipede\TP3ETU\TP3\bin\Debug\TP3.exe
+F:\TP3-Centipede\TP3ETU\TP3\bin\Debug\TP3.pdb
+F:\TP3-Centipede\TP3ETU\TP3\obj\Debug\TP3.csprojResolveAssemblyReference.cache
+F:\TP3-Centipede\TP3ETU\TP3\obj\Debug\TP3.LeaderboardForm.resources
+F:\TP3-Centipede\TP3ETU\TP3\obj\Debug\TP3.MillipedeGameForm.resources
+F:\TP3-Centipede\TP3ETU\TP3\obj\Debug\TP3.Properties.Resources.resources
+F:\TP3-Centipede\TP3ETU\TP3\obj\Debug\TP3.csproj.GenerateResource.Cache
+F:\TP3-Centipede\TP3ETU\TP3\obj\Debug\TP3.pdb

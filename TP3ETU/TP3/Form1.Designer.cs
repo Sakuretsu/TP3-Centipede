@@ -31,6 +31,7 @@
       this.components = new System.ComponentModel.Container();
       this.mainTimer = new System.Windows.Forms.Timer(this.components);
       this.labelScore = new System.Windows.Forms.Label();
+      this.lblVie = new System.Windows.Forms.Label();
       this.SuspendLayout();
       // 
       // mainTimer
@@ -47,9 +48,21 @@
       this.labelScore.ForeColor = System.Drawing.Color.Aqua;
       this.labelScore.Location = new System.Drawing.Point(3, 1);
       this.labelScore.Name = "labelScore";
-      this.labelScore.Size = new System.Drawing.Size(148, 45);
+      this.labelScore.Size = new System.Drawing.Size(158, 45);
       this.labelScore.TabIndex = 0;
-      this.labelScore.Text = "Score: 0";
+      this.labelScore.Text = "Score : 0";
+      // 
+      // lblVie
+      // 
+      this.lblVie.AutoSize = true;
+      this.lblVie.BackColor = System.Drawing.Color.Transparent;
+      this.lblVie.Font = new System.Drawing.Font("Comic Sans MS", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.lblVie.ForeColor = System.Drawing.Color.Aqua;
+      this.lblVie.Location = new System.Drawing.Point(3, 46);
+      this.lblVie.Name = "lblVie";
+      this.lblVie.Size = new System.Drawing.Size(118, 45);
+      this.lblVie.TabIndex = 1;
+      this.lblVie.Text = "Vie : 3";
       // 
       // MillipedeGameForm
       // 
@@ -57,6 +70,7 @@
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.BackColor = System.Drawing.Color.Black;
       this.ClientSize = new System.Drawing.Size(284, 262);
+      this.Controls.Add(this.lblVie);
       this.Controls.Add(this.labelScore);
       this.DoubleBuffered = true;
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -75,5 +89,6 @@
 
     private System.Windows.Forms.Timer mainTimer;
     private System.Windows.Forms.Label labelScore;
+    private System.Windows.Forms.Label lblVie;
   }
 }
