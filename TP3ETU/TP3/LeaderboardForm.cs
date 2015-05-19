@@ -38,6 +38,7 @@ namespace TP3
           txtbNom.Visible = false;
           btnValider.Visible = false;
           lblMeilleursScores.Visible = false;
+          lblVeuillezEntrerNom.Visible = false;
           lblNouveauRecord.Text = "Game Over!";
         }
         AfficherScores();
@@ -101,6 +102,19 @@ namespace TP3
         SortScores();
         pnlEntrerNom.Visible = false;
         AfficherScores();
+        EcrireScores();
+      }
+    }
+    private void EcrireScores()
+    {
+      File.Delete("Leaderboard.txt");
+      for (int i = 0; i != 10; i++)
+      {
+        File.AppendAllText("Leaderboard.txt", currentScoresWithNewScore[i]);
+        if (i !=9)
+        {
+          File.AppendAllText("Leaderboard.txt", ";");
+        }
       }
     }
     private void AfficherScores()
