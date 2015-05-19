@@ -84,7 +84,7 @@ namespace TP3
     /// <param name="r2">Le second rectangle</param>
     /// <returns>true si les deux rectangles s'intersectent, false sinon. Note: La méthode 
     /// retourne true si l'intersection se produit uniquement au niveau des bordures.</returns>
-    public static bool CheckIntersectionBetweenRectangle(RectangleF r1, RectangleF r2)
+    private static bool CheckIntersectionBetweenRectangle(RectangleF r1, RectangleF r2)
     {
       float xInter1 = (r1.Left + r1.Width - r2.Left);
       float xInter2 = ((r2.Left + r2.Width) - r1.Left);
@@ -128,7 +128,10 @@ namespace TP3
           snakeRect.X = snakes[i][j].X * OBJECT_SIZE;
           snakeRect.Y = snakes[i][j].Y * OBJECT_SIZE;
           if (CheckIntersectionBetweenRectangle(snakeRect, playerRect))
+          {
             player.NbLives--;
+          }
+            
           for (int k = 0; k < bullets.Count; k++)
           {
             if (snakes[i][j].X == bullets[k].XPosition / OBJECT_SIZE && snakes[i][j].Y == bullets[k].YPosition / OBJECT_SIZE)
@@ -202,7 +205,7 @@ namespace TP3
     /// <summary>
     /// Cette fonction vérifie si une entitée a été atteinte par une balle et les enlève.
     /// </summary>
-    public void RemoveShotEntities()
+    private void RemoveShotEntities()
     {
       //Liste de champignons à enlever
       List<Mushroom> mushroomsToRemove = new List<Mushroom>();
@@ -264,10 +267,16 @@ namespace TP3
         spiders.Remove(spiderMan);
       }
     }
+
+    private void KillAll ()
+    {
+      while (spiders.)
+    }
+
     /// <summary>
     /// Cette conction gère la cible d'une araignée aléatoirement.
     /// </summary>
-    public void RandomizeSpiders()
+    private void RandomizeSpiders()
     {
       foreach (Spider spider in spiders)
       {
