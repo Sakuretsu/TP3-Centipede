@@ -33,17 +33,10 @@ namespace TP3
       // ppoulin
       // Certainement du code à ajouter ici ou dans le OnDraw
       labelScore.Text = "Score: " + game.Score;
-
-      //<Charles Lachance>
       if (game.Update( ) == EndGameResult.GAME_LOST)
       {
-        mainTimer.Enabled = false;
-        LeaderboardForm leaderboard = new LeaderboardForm();
-        leaderboard.ShowDialog();
-        mainTimer.Enabled = true;
-        game = new MillipedeGame();
+        Application.Exit();
       }
-      //</Charles Lachance>
 
       Invalidate( );
     }

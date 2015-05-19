@@ -102,6 +102,7 @@
   <ItemGroup>
     <Content Include="Images\Player.bmp" />
     <Content Include="Images\SnakePart.bmp" />
+    <Content Include="Leaderboard\Leaderboard.txt" />
     <None Include="Sounds\dead.wav" />
     <None Include="Sounds\Shot.wav" />
     <None Include="Sounds\Soundtrack jeu.wav" />
