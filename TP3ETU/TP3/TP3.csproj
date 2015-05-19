@@ -102,7 +102,10 @@
   <ItemGroup>
     <Content Include="Images\Player.bmp" />
     <Content Include="Images\SnakePart.bmp" />
-    <None Include="Resources\BulletPowerup.png" />
+    <None Include="Sounds\dead.wav" />
+    <None Include="Sounds\Shot.wav" />
+    <None Include="Sounds\Soundtrack jeu.wav" />
+    <None Include="Images\BulletPowerup.png" />
     <None Include="Images\Spider.png" />
     <None Include="Images\Bullet.png" />
     <None Include="Images\Mushroom.png" />

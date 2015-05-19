@@ -4,6 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using System.Windows.Input;
+using System.Media;
 namespace TP3
 {
   class Player

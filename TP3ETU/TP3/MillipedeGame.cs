@@ -2,24 +2,40 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Input;
+using System.Media;
+using System.IO;
 
 namespace TP3
 {
   class MillipedeGame
   {
     //<Tommy Bouffard>
+    //Liste des champignons présents dans la partie
     private List<Mushroom> mushrooms = new List<Mushroom>(); 
+    //Générateur de nombres au hasard
     private Random rnd = new Random();
+    //Liste des projectiles présents dans la partie
     private List<Projectile> bullets = new List<Projectile>();
+    //Liste des araignées présents dans la partie
     private List<Spider> spiders = new List<Spider>();
+    //Le joueur
     private Player player = new Player();
+    //Nombre de "cases" horizontales
     public const int NB_HORIZONTAL_BLOCKS = 35;
+    //Nombre de "cases" verticales
     public const int NB_VERTICAL_BLOCKS = 40;
+    //Taille de base d'un élément
     public const int OBJECT_SIZE = 16;
+    //Taille horizontale de la fenêtre du jeu
     public const int GAME_WIDTH = OBJECT_SIZE*NB_HORIZONTAL_BLOCKS;
+    //Taille verticale de la fenêtre du jeu
     public const int GAME_HEIGHT = OBJECT_SIZE* NB_VERTICAL_BLOCKS;
+    //Nombre de champignons initiaux
     public const int NB_STARTING_MUSHROOM = 40;
+    //Pointage total
     private int score = 0;
+    //Musique du jeu
+    SoundPlayer sndTrack = new SoundPlayer(Properties.Resources.Soundtrack_jeu);
     //</Tommy Bouffard>
     //<Charles Lachance>
     private List<Snake> snakes = null;
@@ -47,6 +63,8 @@ namespace TP3
       {
         mushrooms.Add(new Mushroom(rnd.Next(0, NB_HORIZONTAL_BLOCKS), rnd.Next(0, 2*NB_VERTICAL_BLOCKS/3)));
       }
+      //Lors du début du jeu on commence à faire jouer la musique
+      sndTrack.PlayLooping();
       //</Tommy Bouffard>
 
       //<Charles Lachance>
@@ -150,44 +168,44 @@ namespace TP3
         //<charles Lachance>
         if (player.Ammo <= BulletPowerup.MIN_AMMO_TO_SPAWN && powerup == null)
           powerup = new BulletPowerup();
-        //</charles Lachance>
-        bullets.Add(player.Fire());
+        {
+          bullets.Add(player.Fire());
+        }
       }
-
-      //<charles Lachance>
       Rectangle spiderRect = new Rectangle();
       spiderRect.Height = Spider.SPIDER_SIZE;
       spiderRect.Width = Spider.SPIDER_SIZE;
-      //</charles Lachance>
+      //<Tommy Bouffard>
       foreach(Spider spider in spiders)
       {
         spider.Update();
-        //<charles Lachance>
         spiderRect.X = (int)spider.XPosition;
         spiderRect.Y = (int)spider.YPosition;
         if (CheckIntersectionBetweenRectangle(spiderRect, playerRect))
           player.NbLives--;
-        //</charles Lachance>
       }
-
+      //</Tommy Bouffard>
       if (powerup != null && powerup.Update(player))
         powerup = null;
 
       RemoveShotEntities();
       RandomizeSpiders();
 
-      //<charles Lachance>
       if (player.NbLives <= 0)
         return EndGameResult.GAME_LOST;
       return EndGameResult.GAME_CONTINUE;
       //</charles Lachance>
     }
-
+    /// <summary>
+    /// Cette fonction vérifie si une entitée a été atteinte par une balle et les enlève.
+    /// </summary>
     public void RemoveShotEntities()
     {
-
+      //Liste de champignons à enlever
       List<Mushroom> mushroomsToRemove = new List<Mushroom>();
+      //Liste de projectiles à enlever
       List<Projectile> bulletsToRemove = new List<Projectile>();
+      //Liste d'araignées à enlever
       List<Spider> spidersToRemove = new List<Spider>();
       for (int j = 0; j != bullets.Count; j++)
       {
@@ -196,8 +214,10 @@ namespace TP3
           if (CheckIntersectionBetweenRectangle(new RectangleF(mushrooms[i].XPosition * OBJECT_SIZE, mushrooms[i].YPosition * OBJECT_SIZE, OBJECT_SIZE, OBJECT_SIZE),
             new RectangleF(bullets[j].XPosition, bullets[j].YPosition, Projectile.SHOT_WIDTH, Projectile.SHOT_HEIGHT)))
           {
+            //On ajoute la balle et le champignon à leur listes à enlever respectives.
             mushroomsToRemove.Add(mushrooms[i]);
             bulletsToRemove.Add(bullets[j]);
+            //Si on ne brise pas la boucle, on risque de détruire 2 éléments dans les mêmes cases.
             break;
           }
         }
@@ -206,20 +226,25 @@ namespace TP3
           if (CheckIntersectionBetweenRectangle(new RectangleF(spiders[i].XPosition, spiders[i].YPosition, OBJECT_SIZE * 2, OBJECT_SIZE * 2),
              new RectangleF(bullets[j].XPosition, bullets[j].YPosition, Projectile.SHOT_WIDTH, Projectile.SHOT_HEIGHT)))
           {
+            //On ajoute la balle et l'araignée à leur listes à enlever respectives.
             spidersToRemove.Add(spiders[i]);
             bulletsToRemove.Add(bullets[j]);
             mushrooms.Add(new Mushroom((int)(spiders[i].XPosition / OBJECT_SIZE), (int)(spiders[i].YPosition / OBJECT_SIZE)));
+            //Une araignée vaut 3 points
             score += 3;
+            //Si on ne brise pas la boucle, on risque de détruire 2 éléments dans les mêmes cases.
             break;
           }
           if (spiders[i].XPosition<0-OBJECT_SIZE*2 || spiders[i].XPosition>GAME_WIDTH)
           {
+            //Les araignées disparaissent si ils sortent de la partie.
             spidersToRemove.Add(spiders[i]);
             break;
           }
         }
         if (bullets[j].YPosition < 0)
         {
+          //On enlève la balle qui sort du jeu.
           bulletsToRemove.Add(bullets[j]);
         }
       }
@@ -236,12 +261,16 @@ namespace TP3
         spiders.Remove(spiderMan);
       }
     }
+    /// <summary>
+    /// Cette conction gère la cible d'une araignée aléatoirement.
+    /// </summary>
     public void RandomizeSpiders()
     {
       foreach (Spider spider in spiders)
       {
         if (spider.NbUpdates%Spider.nbUpdatesBeforeTargetChange == 0)
         {
+          //un dixième du temps l'araignée cible le joueur
           if (rnd.Next(0,11) == 10)
           {
             spider.SetPlayerAsTarget(player.XPosition, player.YPosition);
@@ -253,10 +282,12 @@ namespace TP3
         }
       }
     }
-    //</Tommy Bouffard>
+    /// <summary>
+    /// Cette fonction dessine les éléments sur la surface du jeu
+    /// </summary>
+    /// <param name="g"></param>
     public void Draw(Graphics g)
     {
-      //<Tommy Bouffard>
       foreach (Mushroom mush in mushrooms)
       {
         mush.Draw(g);

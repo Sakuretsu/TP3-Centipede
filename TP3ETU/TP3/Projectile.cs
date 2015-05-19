@@ -1,5 +1,6 @@
 ﻿//<Tommy Bouffard>
 using System.Drawing;
+using System.Media;
 
 namespace TP3
 {
@@ -10,7 +11,6 @@ namespace TP3
     public const int SHOT_HEIGHT = 8;
     private int yPosition = 0;
     private int xPosition = 0;
-
     public int XPosition
     {
       get
