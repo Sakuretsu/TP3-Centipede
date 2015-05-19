@@ -79,8 +79,7 @@ namespace TP3
 
     private void btnValider_Click(object sender, EventArgs e)
     {
-      txtbNom.Text = txtbNom.Text.Trim();
-      if (txtbNom.Text != "")
+      if ((txtbNom.Text = txtbNom.Text.Trim()).Length != 0)
       {
         pnlEntrerNom.Visible = false;
         trvMeilleursScores.Nodes.Add("exemple");
@@ -90,6 +89,18 @@ namespace TP3
     private void trvMeilleursScores_BeforeSelect(object sender, TreeViewCancelEventArgs e)
     {
       e.Cancel = true;
+    }
+
+    private void txtbNom_TextChanged(object sender, EventArgs e)
+    {
+      if (Char.IsLetterOrDigit(txtbNom.Text[txtbNom.Text.Length - 1]))
+      {
+        btnValider.Enabled = true;
+      }
+      else
+      {
+        btnValider.Enabled = false;
+      }
     }
   }
 }
