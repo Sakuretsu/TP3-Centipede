@@ -32,7 +32,7 @@ namespace TP3
     //Nombre de champignons initiaux
     public const int NB_STARTING_MUSHROOM = 40;
     //Pointage total
-    private static int score = 0;
+    private int score = 0;
     //Musique du jeu
     SoundPlayer sndTrack = new SoundPlayer(Properties.Resources.Soundtrack_jeu);
     //</Tommy Bouffard>
@@ -42,7 +42,7 @@ namespace TP3
     private int nbOfSnakeSpawned = 0;
     //</Charles Lachance>
     //Propriété c# du pointage
-    public static int Score
+    public int Score
     {
       get
       {

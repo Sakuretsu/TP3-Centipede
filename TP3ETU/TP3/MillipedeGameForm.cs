@@ -28,7 +28,7 @@ namespace TP3
     {
       // ppoulin
       // Certainement du code à ajouter ici ou dans le OnDraw
-      labelScore.Text = "Score : " + MillipedeGame.Score;
+      labelScore.Text = "Score : " + game.Score;
 
       //<Charles Lachance>
       EndGameResult result = game.Update( );
@@ -36,7 +36,7 @@ namespace TP3
       if (result == EndGameResult.GAME_LOST)
       {
         mainTimer.Enabled = false;
-        LeaderboardForm leaderboard = new LeaderboardForm();
+        LeaderboardForm leaderboard = new LeaderboardForm(game.Score);
         if(DialogResult.Abort!=leaderboard.ShowDialog())
         {
           game = new MillipedeGame();

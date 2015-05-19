@@ -1,8 +1,8 @@
 ﻿
 //<Charles Lachance>
 using System;
-using System.IO;
 using System.Windows.Forms;
+using System.IO;
 
 namespace TP3
 {
@@ -11,49 +11,71 @@ namespace TP3
     string texteFichier = "";
     string[] currentScores = new string[10];
     int[] leaderBoardScoresNumbers = new int[11];
-    public LeaderboardForm()
+    string[] currentScoresWithNewScore = new string[11];
+    int score = 0;
+    public LeaderboardForm(int score)
     {
+      this.score = score;
       InitializeComponent();
       //<Tommy Bouffard>
+      txtbNom.Visible = true;
+      btnValider.Visible = true;
+      lblMeilleursScores.Visible = true;
+      lblNouveauRecord.Text = "Nouveau record!";
       try
       {
         texteFichier = File.ReadAllText("Leaderboard.txt");
         currentScores = texteFichier.Split(';');
         for (int i = 0; i != currentScores.Length; i++)
         {
+          currentScoresWithNewScore[i] = currentScores[i];
           string[] division = currentScores[i].Split(',');
-          leaderBoardScoresNumbers[i] = int.Parse(currentScores[0]);
+          leaderBoardScoresNumbers[i] = int.Parse(division[0]);
         }
-        if (MillipedeGame.Score < leaderBoardScoresNumbers[9])
+        leaderBoardScoresNumbers[10] = score;
+        if (score < leaderBoardScoresNumbers[9])
         {
-
+          txtbNom.Visible = false;
+          btnValider.Visible = false;
+          lblMeilleursScores.Visible = false;
+          lblNouveauRecord.Text = "Game Over!";
         }
+        AfficherScores();
       }
       catch (Exception ex)
       {
-        System.Console.WriteLine("LeaderBoard: " + ex.Message);
+        Logger.GetInstance().Log("Highscores:" + ex.Message);
       }
       //</Tommy Bouffard>
     }
     /*
      *   
-  procédure tri_selection(tableau t, entier n)
-      pour i de 1 à n - 1
-          min ← i
-          pour j de i + 1 à n
-              si t[j] < t[min], alors min ← j
-          fin pour
-          si min ≠ i, alors échanger t[i] et t[min]
-      fin pour
-  fin procédure
     */
     /// <summary>
     /// Cette finction trie les valeurs du leaderboard.
     /// </summary>
-    /// <returns></returns>
-    public int[] SortScores()
+    public void SortScores()
     {
-      return new int[0];
+      for (int i = 0; i != currentScoresWithNewScore.Length-1; i++)
+      {
+        int max = i;
+        for (int j = i+1; j!= currentScoresWithNewScore.Length; j++)
+        {
+          if (leaderBoardScoresNumbers[j]> leaderBoardScoresNumbers[max])
+          {
+            max = j;
+          }
+          if (max !=i)
+          {
+            int exchange = leaderBoardScoresNumbers[i];
+            leaderBoardScoresNumbers[i] = leaderBoardScoresNumbers[max];
+            leaderBoardScoresNumbers[max] = exchange;
+            string exchange2 = currentScoresWithNewScore[i];
+            currentScoresWithNewScore[i] = currentScoresWithNewScore[max];
+            currentScoresWithNewScore[max] = exchange2;
+          }
+        }
+      }
     }
     public void GetLeaderBoard()
     {
@@ -62,7 +84,7 @@ namespace TP3
 
     private void btnQuitter_Click(object sender, EventArgs e)
     {
-      Logger.GetInstance().EndLog("Program stopped");
+      Application.Exit();
     }
 
     private void btnNouvellePartie_Click(object sender, EventArgs e)
@@ -72,10 +94,21 @@ namespace TP3
 
     private void btnValider_Click(object sender, EventArgs e)
     {
-      if ((txtbNom.Text = txtbNom.Text.Trim()).Length != 0)
+      txtbNom.Text = txtbNom.Text.Trim();
+      if (txtbNom.Text != "")
       {
+        currentScoresWithNewScore[10] = score + "," + txtbNom.Text;
+        SortScores();
         pnlEntrerNom.Visible = false;
-        trvMeilleursScores.Nodes.Add("exemple");
+        AfficherScores();
+      }
+    }
+    private void AfficherScores()
+    {
+      trvMeilleursScores.Nodes.Clear();
+      for (int i = 0; i != 10; i++)
+      {
+        trvMeilleursScores.Nodes.Add(currentScoresWithNewScore[i]);
       }
     }
 
