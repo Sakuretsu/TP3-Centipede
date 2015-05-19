@@ -8,23 +8,40 @@ namespace TP3
 {
   public partial class LeaderboardForm : Form
   {
+    //Le texte entier du fichier
     string texteFichier = "";
+    //Tableau de scores pour le split
     string[] currentScores = new string[10];
+    //Tableau des nombres des scores
     int[] leaderBoardScoresNumbers = new int[11];
+    //Tableau des des scores avec leur nom (score,nom)
     string[] currentScoresWithNewScore = new string[11];
+    //Score du jeu (il faut s'en servir ailleurs que dans le constructeur).
     int score = 0;
+    /// <summary>
+    /// Cette fonction initialise l'interface du leaderboard
+    /// </summary>
+    /// <param name="score">Pointage lors de l'appel du leaderboard</param>
     public LeaderboardForm(int score)
     {
-      this.score = score;
       InitializeComponent();
       //<Tommy Bouffard>
+      this.score = score;
       txtbNom.Visible = true;
       btnValider.Visible = true;
       lblMeilleursScores.Visible = true;
       lblNouveauRecord.Text = "Nouveau record!";
+      //Le chargement du fichier peut lever une exception.
       try
       {
         texteFichier = File.ReadAllText("Leaderboard.txt");
+      }
+      catch (Exception ex)
+      {
+        Logger.GetInstance().Log("Highscores:" + ex.Message);
+      }
+      finally
+      {
         currentScores = texteFichier.Split(';');
         for (int i = 0; i != currentScores.Length; i++)
         {
@@ -43,17 +60,13 @@ namespace TP3
         }
         AfficherScores();
       }
-      catch (Exception ex)
-      {
-        Logger.GetInstance().Log("Highscores:" + ex.Message);
-      }
-      //</Tommy Bouffard>
     }
     /*
      *   
     */
     /// <summary>
     /// Cette finction trie les valeurs du leaderboard.
+    /// En triant le tableau des pointages du leaderboard, il trie en parallèle le tableau des scores.
     /// </summary>
     public void SortScores()
     {
@@ -78,6 +91,7 @@ namespace TP3
         }
       }
     }
+    //</Tommy Bouffard>
     public void GetLeaderBoard()
     {
 
@@ -105,18 +119,32 @@ namespace TP3
         EcrireScores();
       }
     }
+    //<Tommy Bouffard>
+    /// <summary>
+    /// Cette fonction écris les pointages du leaderboard dans le fichier leaderboard en regénérant un nouveau fichier.
+    /// </summary>
     private void EcrireScores()
     {
-      File.Delete("Leaderboard.txt");
-      for (int i = 0; i != 10; i++)
+      try
       {
-        File.AppendAllText("Leaderboard.txt", currentScoresWithNewScore[i]);
-        if (i !=9)
+        File.Delete("Leaderboard.txt");
+        for (int i = 0; i != 10; i++)
         {
-          File.AppendAllText("Leaderboard.txt", ";");
+          File.AppendAllText("Leaderboard.txt", currentScoresWithNewScore[i]);
+          if (i != 9)
+          {
+            File.AppendAllText("Leaderboard.txt", ";");
+          }
         }
       }
+      catch (Exception ex)
+      {
+        Logger.GetInstance().Log("Erreur lors de l'appel EcrireScores dans LeaderBoardForm.cs:" + ex.Message);
+      }
     }
+    /// <summary>
+    /// Cette fonction fait afficher les scores sur le formulaire.
+    /// </summary>
     private void AfficherScores()
     {
       trvMeilleursScores.Nodes.Clear();
@@ -125,6 +153,7 @@ namespace TP3
         trvMeilleursScores.Nodes.Add(currentScoresWithNewScore[i]);
       }
     }
+    //</Tommy Bouffard>
 
     private void trvMeilleursScores_BeforeSelect(object sender, TreeViewCancelEventArgs e)
     {

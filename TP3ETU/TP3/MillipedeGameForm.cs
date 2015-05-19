@@ -36,7 +36,10 @@ namespace TP3
       if (result == EndGameResult.GAME_LOST)
       {
         mainTimer.Enabled = false;
+        //<Tommy Bouffard>
+        //On arrete la musique lorsque la partie se termine.
         MillipedeGame.sndTrack.Stop();
+        ///Tommy Bouffard
         LeaderboardForm leaderboard = new LeaderboardForm(game.Score);
         if(DialogResult.Abort!=leaderboard.ShowDialog())
         {
