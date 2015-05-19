@@ -1,21 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TP3
 {
   public partial class MillipedeGameForm : Form
   {
-    private MillipedeGame game = new MillipedeGame( );
+    private MillipedeGame game = null;
     public MillipedeGameForm( )
     {
       InitializeComponent( );
+      Logger.GetInstance().Log("Program started");
+      game = new MillipedeGame();
     }
 
     private void OnLoad( object sender, EventArgs e )
@@ -41,9 +37,15 @@ namespace TP3
       {
         mainTimer.Enabled = false;
         LeaderboardForm leaderboard = new LeaderboardForm();
-        leaderboard.ShowDialog();
-        game = new MillipedeGame();
-        mainTimer.Enabled = true;
+        if(DialogResult.Abort!=leaderboard.ShowDialog())
+        {
+          game = new MillipedeGame();
+          mainTimer.Enabled = true;
+        }
+        else
+        {
+          Application.Exit();
+        }
       }
       //</Charles Lachance>
 

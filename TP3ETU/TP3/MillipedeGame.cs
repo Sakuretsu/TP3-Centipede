@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Windows.Input;
 using System.Media;
-using System.IO;
+using System.Windows.Input;
 
 namespace TP3
 {
@@ -63,7 +62,10 @@ namespace TP3
     /// </summary>
     public MillipedeGame( )
     {
-      //<Tommy Bouffard
+      //<Charles Lachance>
+      Logger.GetInstance().Log("Game started");
+      //</Charles Lachance>
+      //<Tommy Bouffard>
       for (int i = 0; i != NB_STARTING_MUSHROOM; i++)
       {
         mushrooms.Add(new Mushroom(rnd.Next(0, NB_HORIZONTAL_BLOCKS), rnd.Next(0, 2*NB_VERTICAL_BLOCKS/3)));
@@ -208,7 +210,10 @@ namespace TP3
       RandomizeSpiders();
 
       if (player.NbLives <= 0)
+      {
+        Logger.GetInstance().Log("Game ended");
         return EndGameResult.GAME_LOST;
+      }
       return EndGameResult.GAME_CONTINUE;
       //</charles Lachance>
     }
