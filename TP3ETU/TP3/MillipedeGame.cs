@@ -34,7 +34,7 @@ namespace TP3
     //Pointage total
     private int score = 0;
     //Musique du jeu
-    SoundPlayer sndTrack = new SoundPlayer(Properties.Resources.Soundtrack_jeu);
+    public static SoundPlayer sndTrack = new SoundPlayer(Properties.Resources.Soundtrack_jeu);
     //</Tommy Bouffard>
     //<Charles Lachance>
     private List<Snake> snakes = null;

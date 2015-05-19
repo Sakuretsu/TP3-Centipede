@@ -36,6 +36,7 @@ namespace TP3
       if (result == EndGameResult.GAME_LOST)
       {
         mainTimer.Enabled = false;
+        MillipedeGame.sndTrack.Stop();
         LeaderboardForm leaderboard = new LeaderboardForm(game.Score);
         if(DialogResult.Abort!=leaderboard.ShowDialog())
         {
