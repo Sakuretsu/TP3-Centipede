@@ -177,6 +177,7 @@ namespace TP3
       //</charles Lachance>
       //<Tommy Bouffard>
       player.Update();
+      if (rnd.Next(0, 351) == 350)
       {
         spiders.Add(new Spider());
       }

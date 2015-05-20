@@ -5,6 +5,6 @@
 200,200 man;
 150,Robb Justu;
 123,Lawltree;
-33,badmin;
-23,masterchief;
-1,d
+50,Jojmaster;
+20,Le Grand Moron;
+0,Le Nul
