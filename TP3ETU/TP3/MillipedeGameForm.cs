@@ -60,7 +60,17 @@ namespace TP3
 
     private void MillipedeGameForm_FormClosing(object sender, FormClosingEventArgs e)
     {
-      Logger.GetInstance().EndLog("Program stopped");
+      mainTimer.Enabled = false;
+      DialogResult result = MessageBox.Show("Voulez-vous vraiment quitter?", "Quitter?", MessageBoxButtons.YesNo);
+      if (result == DialogResult.Yes)
+      {
+        Logger.GetInstance().EndLog("Program stopped");
+      }
+      else
+      {
+        e.Cancel = true;
+        mainTimer.Enabled = true;
+      }
     }
   }
 }
