@@ -215,6 +215,7 @@
       this.Name = "LeaderboardForm";
       this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
       this.Text = "Game Over!";
+      this.Shown += new System.EventHandler(this.LeaderboardForm_Shown);
       this.pnlEntrerNom.ResumeLayout(false);
       this.pnlEntrerNom.PerformLayout();
       this.pnlLeaderboard.ResumeLayout(false);

@@ -7,6 +7,7 @@ namespace TP3
   public partial class MillipedeGameForm : Form
   {
     private MillipedeGame game = null;
+    LeaderboardForm leaderboard = new LeaderboardForm();
     public MillipedeGameForm( )
     {
       InitializeComponent( );
@@ -34,16 +35,17 @@ namespace TP3
 
       //<Charles Lachance>
       EndGameResult result = game.Update( );
-      lblVie.Text = "Vie : " + game.Player.NbLives;
+      lblVies.Text = "Vies : " + game.Player.NbLives;
+      lblMunitions.Text = "Munitions : " + game.Player.Ammo;
       if (result == EndGameResult.GAME_LOST)
       {
         mainTimer.Enabled = false;
         //<Tommy Bouffard>
         //On arrete la musique lorsque la partie se termine.
         MillipedeGame.sndTrack.Stop();
-        ///Tommy Bouffard
-        LeaderboardForm leaderboard = new LeaderboardForm(game.Score);
-        if(DialogResult.Abort!=leaderboard.ShowDialog())
+        //</Tommy Bouffard>
+        leaderboard.Score = game.Score;
+        if(leaderboard.ShowDialog() != DialogResult.Abort)
         {
           game = new MillipedeGame();
           mainTimer.Enabled = true;
@@ -53,7 +55,6 @@ namespace TP3
           Application.Exit();
         }
       }
-      //</Charles Lachance>
 
       Invalidate( );
     }
@@ -61,6 +62,7 @@ namespace TP3
     private void MillipedeGameForm_FormClosing(object sender, FormClosingEventArgs e)
     {
       mainTimer.Enabled = false;
+      MillipedeGame.sndTrack.Stop();
       DialogResult result = MessageBox.Show("Voulez-vous vraiment quitter?", "Quitter?", MessageBoxButtons.YesNo);
       if (result == DialogResult.Yes)
       {
@@ -70,7 +72,9 @@ namespace TP3
       {
         e.Cancel = true;
         mainTimer.Enabled = true;
+        MillipedeGame.sndTrack.PlayLooping();
       }
     }
+    //</Charles Lachance>
   }
 }

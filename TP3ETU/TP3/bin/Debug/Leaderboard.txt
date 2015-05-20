@@ -5,6 +5,5 @@
 200,200 man;
 150,Robb Justu;
 123,Lawltree;
-50,Jojmaster;
-20,Le Grand Moron;
-0,Le Nul
+33,badmin;9,sdfs4;
+5,dfbg

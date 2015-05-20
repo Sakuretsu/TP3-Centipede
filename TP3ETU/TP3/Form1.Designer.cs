@@ -31,7 +31,8 @@
       this.components = new System.ComponentModel.Container();
       this.mainTimer = new System.Windows.Forms.Timer(this.components);
       this.labelScore = new System.Windows.Forms.Label();
-      this.lblVie = new System.Windows.Forms.Label();
+      this.lblVies = new System.Windows.Forms.Label();
+      this.lblMunitions = new System.Windows.Forms.Label();
       this.SuspendLayout();
       // 
       // mainTimer
@@ -52,17 +53,29 @@
       this.labelScore.TabIndex = 0;
       this.labelScore.Text = "Score : 0";
       // 
-      // lblVie
+      // lblVies
       // 
-      this.lblVie.AutoSize = true;
-      this.lblVie.BackColor = System.Drawing.Color.Transparent;
-      this.lblVie.Font = new System.Drawing.Font("Comic Sans MS", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.lblVie.ForeColor = System.Drawing.Color.Aqua;
-      this.lblVie.Location = new System.Drawing.Point(3, 46);
-      this.lblVie.Name = "lblVie";
-      this.lblVie.Size = new System.Drawing.Size(118, 45);
-      this.lblVie.TabIndex = 1;
-      this.lblVie.Text = "Vie : 3";
+      this.lblVies.AutoSize = true;
+      this.lblVies.BackColor = System.Drawing.Color.Transparent;
+      this.lblVies.Font = new System.Drawing.Font("Comic Sans MS", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.lblVies.ForeColor = System.Drawing.Color.Aqua;
+      this.lblVies.Location = new System.Drawing.Point(3, 46);
+      this.lblVies.Name = "lblVies";
+      this.lblVies.Size = new System.Drawing.Size(134, 45);
+      this.lblVies.TabIndex = 1;
+      this.lblVies.Text = "Vies : 3";
+      // 
+      // lblMunitions
+      // 
+      this.lblMunitions.AutoSize = true;
+      this.lblMunitions.BackColor = System.Drawing.Color.Transparent;
+      this.lblMunitions.Font = new System.Drawing.Font("Comic Sans MS", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.lblMunitions.ForeColor = System.Drawing.Color.Aqua;
+      this.lblMunitions.Location = new System.Drawing.Point(3, 91);
+      this.lblMunitions.Name = "lblMunitions";
+      this.lblMunitions.Size = new System.Drawing.Size(234, 45);
+      this.lblMunitions.TabIndex = 2;
+      this.lblMunitions.Text = "Munitions : 20";
       // 
       // MillipedeGameForm
       // 
@@ -70,7 +83,8 @@
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.BackColor = System.Drawing.Color.Black;
       this.ClientSize = new System.Drawing.Size(284, 262);
-      this.Controls.Add(this.lblVie);
+      this.Controls.Add(this.lblMunitions);
+      this.Controls.Add(this.lblVies);
       this.Controls.Add(this.labelScore);
       this.DoubleBuffered = true;
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -90,6 +104,7 @@
 
     private System.Windows.Forms.Timer mainTimer;
     private System.Windows.Forms.Label labelScore;
-    private System.Windows.Forms.Label lblVie;
+    private System.Windows.Forms.Label lblVies;
+    private System.Windows.Forms.Label lblMunitions;
   }
 }

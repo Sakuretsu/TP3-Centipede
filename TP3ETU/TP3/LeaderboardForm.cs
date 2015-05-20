@@ -18,42 +18,49 @@ namespace TP3
     string[] currentScoresWithNewScore = new string[11];
     //Score du jeu (il faut s'en servir ailleurs que dans le constructeur).
     int score = 0;
+
+    //<Charles Lachance>
+    private static bool scoresHasBeenLoaded = false;
+    //</Charles Lachance>
+
     /// <summary>
     /// Cette fonction initialise l'interface du leaderboard
     /// </summary>
     /// <param name="score">Pointage lors de l'appel du leaderboard</param>
-    public LeaderboardForm(int score)
+    public LeaderboardForm()
     {
       InitializeComponent();
       //<Tommy Bouffard>
-      this.score = score;
-
       //Le chargement du fichier peut lever une exception.
       try
       {
         texteFichier = File.ReadAllText("Leaderboard.txt");
-        currentScores = texteFichier.Split(';');
-        for (int i = 0; i != currentScores.Length; i++)
-        {
-          currentScoresWithNewScore[i] = currentScores[i];
-          string[] division = currentScores[i].Split(',');
-          leaderBoardScoresNumbers[i] = int.Parse(division[0]);
-        }
-        leaderBoardScoresNumbers[10] = score;
-        if (score > leaderBoardScoresNumbers[9])
-        {
-          //<Charles Lachance>
-          pnlEntrerNom.Visible = true;
-          //</Charles Lachance>
-        }
-        AfficherScores();
       }
       catch (Exception ex)
       {
         Logger.GetInstance().Log("Highscores:" + ex.Message);
       }
+      currentScores = texteFichier.Split(';');
+      for (int i = 0; i != currentScores.Length; i++)
+      {
+        currentScoresWithNewScore[i] = currentScores[i];
+        string[] division = currentScores[i].Split(',');
+        leaderBoardScoresNumbers[i] = int.Parse(division[0]);
+      }
     }
     
+    public int Score
+    {
+      get
+      {
+        return score;
+      }
+
+      set
+      {
+        score = value;
+      }
+    }
 
     /// <summary>
     /// Cette finction trie les valeurs du leaderboard.
@@ -165,6 +172,16 @@ namespace TP3
       {
         btnValider.Enabled = false;
       }
+    }
+
+    private void LeaderboardForm_Shown(object sender, EventArgs e)
+    {
+      leaderBoardScoresNumbers[10] = score;
+      if (score > leaderBoardScoresNumbers[9])
+      {
+        pnlEntrerNom.Visible = true;
+      }
+      AfficherScores();
     }
   }
 }
