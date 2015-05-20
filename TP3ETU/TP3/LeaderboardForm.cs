@@ -8,8 +8,8 @@ namespace TP3
 {
   public partial class LeaderboardForm : Form
   {
-    //Le texte entier du fichier
-    string texteFichier = "";
+    //Le texte entier du fichier (mis en public pour tests unitaires)
+    public string texteFichier = "";
     //Tableau de scores pour le split
     string[] currentScores = new string[10];
     //Tableau des nombres des scores
@@ -123,7 +123,7 @@ namespace TP3
     /// <summary>
     /// Cette fonction écris les pointages du leaderboard dans le fichier leaderboard en regénérant un nouveau fichier.
     /// </summary>
-    private void EcrireScores()
+    public void EcrireScores()
     {
       try
       {

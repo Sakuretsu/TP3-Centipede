@@ -1,0 +1,7 @@
+d:\WORK HERE NOT IN GITHUB\TP3-Centipede\TP3ETU\TestLeaderboard\bin\Debug\TestLeaderboard.dll
+d:\WORK HERE NOT IN GITHUB\TP3-Centipede\TP3ETU\TestLeaderboard\bin\Debug\TestLeaderboard.pdb
+d:\WORK HERE NOT IN GITHUB\TP3-Centipede\TP3ETU\TestLeaderboard\bin\Debug\TP3.exe
+d:\WORK HERE NOT IN GITHUB\TP3-Centipede\TP3ETU\TestLeaderboard\bin\Debug\TP3.pdb
+d:\WORK HERE NOT IN GITHUB\TP3-Centipede\TP3ETU\TestLeaderboard\obj\Debug\TestLeaderboard.csprojResolveAssemblyReference.cache
+d:\WORK HERE NOT IN GITHUB\TP3-Centipede\TP3ETU\TestLeaderboard\obj\Debug\TestLeaderboard.dll
+d:\WORK HERE NOT IN GITHUB\TP3-Centipede\TP3ETU\TestLeaderboard\obj\Debug\TestLeaderboard.pdb
