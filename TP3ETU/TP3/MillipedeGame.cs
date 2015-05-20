@@ -29,6 +29,8 @@ namespace TP3
     public const int GAME_WIDTH = OBJECT_SIZE*NB_HORIZONTAL_BLOCKS;
     //Taille verticale de la fenêtre du jeu
     public const int GAME_HEIGHT = OBJECT_SIZE* NB_VERTICAL_BLOCKS;
+    //Nombre de champignons initiaux
+    public const int NB_STARTING_MUSHROOM = 40;
     //Pointage total
     private int score = 0;
     //Musique du jeu
@@ -64,19 +66,8 @@ namespace TP3
       Logger.GetInstance().Log("Game started");
       //</Charles Lachance>
       //<Tommy Bouffard>
-      int nbStartingMushroom = rnd.Next(25, 41);
-      for (int i = 0; i != nbStartingMushroom; i++)
+      for (int i = 0; i != NB_STARTING_MUSHROOM; i++)
       {
-        int xPos = rnd.Next(0, NB_HORIZONTAL_BLOCKS);
-        int yPos = rnd.Next(0, 2 * NB_VERTICAL_BLOCKS / 3);
-        for (int j = 0; j!= mushrooms.Count; j++)
-        {
-          if (mushrooms[j].XPosition == xPos && mushrooms[j].YPosition ==yPos)
-          {
-            mushrooms.RemoveAt(j);
-            break;
-          }
-        }
         mushrooms.Add(new Mushroom(rnd.Next(0, NB_HORIZONTAL_BLOCKS), rnd.Next(0, 2*NB_VERTICAL_BLOCKS/3)));
       }
       //Lors du début du jeu on commence à faire jouer la musique
@@ -177,7 +168,7 @@ namespace TP3
       //</charles Lachance>
       //<Tommy Bouffard>
       player.Update();
-      if (rnd.Next(0, 351) == 350)
+      if (rnd.Next(0, 251) == 250)
       {
         spiders.Add(new Spider());
       }
