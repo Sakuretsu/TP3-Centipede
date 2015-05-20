@@ -1,6 +1,9 @@
 ﻿//<Tommy Bouffard>
 /*
- * Cette fonction gère l'ensemble des fonctionalités et des fonctions d'un champignon quelconque dans la partie
+ * Cette classe gère l'ensemble des fonctionalités et des fonctions d'un champignon quelconque dans la partie
+ * 
+ *  Créé par Tommy Bouffard
+ * 
  */
 using System.Drawing;
 

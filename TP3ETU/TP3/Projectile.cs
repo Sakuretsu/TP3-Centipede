@@ -1,6 +1,7 @@
 ﻿//<Tommy Bouffard>
 /* Cette classe gère l'ensemble des fonctionalités qu'un projectile peut avoir dans la partie.
  * 
+ * Créé par Tommy Bouffard
  * 
  */
 using System.Drawing;

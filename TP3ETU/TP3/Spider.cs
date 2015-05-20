@@ -2,7 +2,7 @@
 /* Cette classe contient l'ensemble des fonctionalités de l'araignée dans la partie
  * 
  * 
- * 
+ * Créé par Tommy Bouffard
  * 
  *
  */

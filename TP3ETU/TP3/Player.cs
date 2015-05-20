@@ -3,7 +3,7 @@
 /* Cette classe gère les fonctionalités et les valeurs du joueur dans la partie.
  * 
  * 
- * 
+ * Créé par Tommy Bouffard
  * 
  */
 using System;
