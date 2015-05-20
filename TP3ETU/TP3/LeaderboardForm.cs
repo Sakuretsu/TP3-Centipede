@@ -62,14 +62,25 @@ namespace TP3
         score = value;
       }
     }
-
+    //Cette propriété c# est nécéssaire pour les teste unitaires
+    public int ScoreTester
+    {
+      get
+      {
+        return 50;
+      }
+      set
+      {
+        leaderBoardScoresNumbers[10] = value;
+      }
+    }
     /// <summary>
     /// Cette finction trie les valeurs du leaderboard.
     /// En triant le tableau des pointages du leaderboard, il trie en parallèle le tableau des scores.
     /// </summary>
     public void SortScores()
     {
-      for (int i = 0; i != currentScoresWithNewScore.Length-1; i++)
+      for (int i = 0; i != currentScoresWithNewScore.Length; i++)
       {
         int max = i;
         for (int j = i+1; j!= currentScoresWithNewScore.Length; j++)
