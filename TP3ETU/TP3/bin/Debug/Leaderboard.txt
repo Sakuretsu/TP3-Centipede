@@ -3,6 +3,8 @@
 300,King leonidas;
 250,The J0jM@5t3r;
 200,200 man;
-150,Robb Justu;33,yoloswag6942;7,dfasgf;6,test;
-
-1,dfdfh
+150,Robb Justu;
+123,Lawltree;
+33,Jojmaster;
+20,Le Grand Moron;
+0,Anonyme
