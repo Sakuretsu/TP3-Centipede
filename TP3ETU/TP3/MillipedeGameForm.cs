@@ -66,7 +66,7 @@ namespace TP3
       DialogResult result = MessageBox.Show("Voulez-vous vraiment quitter?", "Quitter?", MessageBoxButtons.YesNo);
       if (result == DialogResult.Yes)
       {
-        Logger.GetInstance().EndLog("Program stopped");
+        Logger.GetInstance().Log("Program stopped");
       }
       else
       {

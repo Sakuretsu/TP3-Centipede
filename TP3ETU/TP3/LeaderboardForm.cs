@@ -101,6 +101,7 @@ namespace TP3
         }
       }
     }
+
     //</Tommy Bouffard>
     public int[] GetLeaderBoard()
     {
@@ -189,6 +190,7 @@ namespace TP3
     private void LeaderboardForm_Shown(object sender, EventArgs e)
     {
       leaderBoardScoresNumbers[10] = score;
+      lblNbPoints.Text = "Votre score : " + score;
       if (score > leaderBoardScoresNumbers[9] && !hasEnteredScore)
       {
         pnlEntrerNom.Visible = true;

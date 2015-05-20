@@ -41,6 +41,7 @@
       this.pnl = new System.Windows.Forms.Panel();
       this.btnQuitter = new System.Windows.Forms.Button();
       this.btnNouvellePartie = new System.Windows.Forms.Button();
+      this.lblNbPoints = new System.Windows.Forms.Label();
       this.pnlEntrerNom.SuspendLayout();
       this.pnlLeaderboard.SuspendLayout();
       this.tlpMeilleursScores.SuspendLayout();
@@ -107,7 +108,6 @@
       // 
       this.pnlLeaderboard.BackColor = System.Drawing.Color.Black;
       this.pnlLeaderboard.Controls.Add(this.tlpMeilleursScores);
-      this.flpWrapper.SetFlowBreak(this.pnlLeaderboard, true);
       this.pnlLeaderboard.Location = new System.Drawing.Point(246, 3);
       this.pnlLeaderboard.Name = "pnlLeaderboard";
       this.pnlLeaderboard.Size = new System.Drawing.Size(357, 258);
@@ -115,14 +115,18 @@
       // 
       // tlpMeilleursScores
       // 
+      this.tlpMeilleursScores.AutoSize = true;
+      this.tlpMeilleursScores.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
       this.tlpMeilleursScores.ColumnCount = 1;
       this.tlpMeilleursScores.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-      this.tlpMeilleursScores.Controls.Add(this.trvMeilleursScores, 0, 1);
       this.tlpMeilleursScores.Controls.Add(this.lblMeilleursScores, 0, 0);
+      this.tlpMeilleursScores.Controls.Add(this.trvMeilleursScores, 0, 1);
+      this.tlpMeilleursScores.Controls.Add(this.lblNbPoints, 0, 2);
       this.tlpMeilleursScores.Dock = System.Windows.Forms.DockStyle.Fill;
       this.tlpMeilleursScores.Location = new System.Drawing.Point(0, 0);
       this.tlpMeilleursScores.Name = "tlpMeilleursScores";
-      this.tlpMeilleursScores.RowCount = 2;
+      this.tlpMeilleursScores.RowCount = 3;
+      this.tlpMeilleursScores.RowStyles.Add(new System.Windows.Forms.RowStyle());
       this.tlpMeilleursScores.RowStyles.Add(new System.Windows.Forms.RowStyle());
       this.tlpMeilleursScores.RowStyles.Add(new System.Windows.Forms.RowStyle());
       this.tlpMeilleursScores.Size = new System.Drawing.Size(357, 258);
@@ -141,7 +145,7 @@
       this.trvMeilleursScores.ShowLines = false;
       this.trvMeilleursScores.ShowPlusMinus = false;
       this.trvMeilleursScores.ShowRootLines = false;
-      this.trvMeilleursScores.Size = new System.Drawing.Size(351, 228);
+      this.trvMeilleursScores.Size = new System.Drawing.Size(351, 208);
       this.trvMeilleursScores.TabIndex = 0;
       this.trvMeilleursScores.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.trvMeilleursScores_BeforeSelect);
       // 
@@ -166,7 +170,7 @@
       this.flpWrapper.Location = new System.Drawing.Point(0, 0);
       this.flpWrapper.MinimumSize = new System.Drawing.Size(357, 258);
       this.flpWrapper.Name = "flpWrapper";
-      this.flpWrapper.Size = new System.Drawing.Size(607, 290);
+      this.flpWrapper.Size = new System.Drawing.Size(607, 264);
       this.flpWrapper.TabIndex = 2;
       // 
       // pnl
@@ -175,7 +179,7 @@
       this.pnl.Controls.Add(this.btnQuitter);
       this.pnl.Controls.Add(this.btnNouvellePartie);
       this.pnl.Dock = System.Windows.Forms.DockStyle.Bottom;
-      this.pnl.Location = new System.Drawing.Point(0, 290);
+      this.pnl.Location = new System.Drawing.Point(0, 264);
       this.pnl.Name = "pnl";
       this.pnl.Size = new System.Drawing.Size(607, 55);
       this.pnl.TabIndex = 4;
@@ -200,6 +204,17 @@
       this.btnNouvellePartie.UseVisualStyleBackColor = true;
       this.btnNouvellePartie.Click += new System.EventHandler(this.btnNouvellePartie_Click);
       // 
+      // lblNbPoints
+      // 
+      this.lblNbPoints.Dock = System.Windows.Forms.DockStyle.Bottom;
+      this.lblNbPoints.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.lblNbPoints.ForeColor = System.Drawing.Color.White;
+      this.lblNbPoints.Location = new System.Drawing.Point(3, 238);
+      this.lblNbPoints.Name = "lblNbPoints";
+      this.lblNbPoints.Size = new System.Drawing.Size(351, 20);
+      this.lblNbPoints.TabIndex = 6;
+      this.lblNbPoints.Text = "Votre score : 0";
+      // 
       // LeaderboardForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -207,7 +222,7 @@
       this.AutoSize = true;
       this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
       this.BackColor = System.Drawing.Color.Black;
-      this.ClientSize = new System.Drawing.Size(607, 345);
+      this.ClientSize = new System.Drawing.Size(607, 319);
       this.ControlBox = false;
       this.Controls.Add(this.flpWrapper);
       this.Controls.Add(this.pnl);
@@ -219,6 +234,7 @@
       this.pnlEntrerNom.ResumeLayout(false);
       this.pnlEntrerNom.PerformLayout();
       this.pnlLeaderboard.ResumeLayout(false);
+      this.pnlLeaderboard.PerformLayout();
       this.tlpMeilleursScores.ResumeLayout(false);
       this.flpWrapper.ResumeLayout(false);
       this.pnl.ResumeLayout(false);
@@ -242,6 +258,7 @@
     private System.Windows.Forms.Label lblMeilleursScores;
     private System.Windows.Forms.TreeView trvMeilleursScores;
     private System.Windows.Forms.TableLayoutPanel tlpMeilleursScores;
+    private System.Windows.Forms.Label lblNbPoints;
 
   }
 }
