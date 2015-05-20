@@ -92,9 +92,9 @@ namespace TP3
       }
     }
     //</Tommy Bouffard>
-    public void GetLeaderBoard()
+    public int[] GetLeaderBoard()
     {
-
+      return leaderBoardScoresNumbers;
     }
 
     private void btnQuitter_Click(object sender, EventArgs e)
@@ -130,6 +130,10 @@ namespace TP3
         File.Delete("Leaderboard.txt");
         for (int i = 0; i != 10; i++)
         {
+          if (i == 9)
+          {
+            File.AppendAllText("Leaderboard.txt", "\r\n");
+          }
           File.AppendAllText("Leaderboard.txt", currentScoresWithNewScore[i]);
           if (i != 9)
           {
