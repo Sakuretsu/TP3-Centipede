@@ -74,6 +74,7 @@ namespace TP3
           if (mushrooms[j].XPosition == xPos && mushrooms[j].YPosition ==yPos)
           {
             mushrooms.RemoveAt(j);
+            break;
           }
         }
         mushrooms.Add(new Mushroom(rnd.Next(0, NB_HORIZONTAL_BLOCKS), rnd.Next(0, 2*NB_VERTICAL_BLOCKS/3)));
@@ -176,7 +177,6 @@ namespace TP3
       //</charles Lachance>
       //<Tommy Bouffard>
       player.Update();
-      if (rnd.Next(0, 251) == 250)
       {
         spiders.Add(new Spider());
       }
