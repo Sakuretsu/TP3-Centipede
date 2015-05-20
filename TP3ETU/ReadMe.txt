@@ -1,0 +1,1 @@
+Vas falloir qu'on parle. Connecte-toi sur skype dèsque tu peux.
