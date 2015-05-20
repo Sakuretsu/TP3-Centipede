@@ -32,13 +32,6 @@ namespace TP3
       try
       {
         texteFichier = File.ReadAllText("Leaderboard.txt");
-      }
-      catch (Exception ex)
-      {
-        Logger.GetInstance().Log("Highscores:" + ex.Message);
-      }
-      finally
-      {
         currentScores = texteFichier.Split(';');
         for (int i = 0; i != currentScores.Length; i++)
         {
@@ -54,6 +47,10 @@ namespace TP3
           //</Charles Lachance>
         }
         AfficherScores();
+      }
+      catch (Exception ex)
+      {
+        Logger.GetInstance().Log("Highscores:" + ex.Message);
       }
     }
     
