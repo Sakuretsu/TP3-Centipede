@@ -22,6 +22,10 @@ namespace TP3
     int nbLives = 3;
     //Nombre de balles restantes
     int ammoRemaining = 20;
+	//<Charles Lachance>
+    //Nombre de balles maximales
+    public const int MAX_AMMO = 20;
+    //</Charles Lachance>
     //Position en x
     int xPosition = 0;
     //Position en y
@@ -79,7 +83,7 @@ namespace TP3
       }
       set
       {
-        ammoRemaining = value;
+        ammoRemaining = Math.Min(value, MAX_AMMO);
       }
     }
     //Propriété c# de l'état de tir du joueur
