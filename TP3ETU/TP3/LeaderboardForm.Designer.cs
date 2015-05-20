@@ -64,6 +64,7 @@
       // 
       // btnValider
       // 
+      this.btnValider.Enabled = false;
       this.btnValider.Location = new System.Drawing.Point(147, 86);
       this.btnValider.Name = "btnValider";
       this.btnValider.Size = new System.Drawing.Size(75, 23);
@@ -78,6 +79,7 @@
       this.txtbNom.Name = "txtbNom";
       this.txtbNom.Size = new System.Drawing.Size(127, 20);
       this.txtbNom.TabIndex = 2;
+      this.txtbNom.TextChanged += new System.EventHandler(this.txtbNom_TextChanged);
       // 
       // lblNouveauRecord
       // 
@@ -131,6 +133,7 @@
       this.trvMeilleursScores.BackColor = System.Drawing.Color.Black;
       this.trvMeilleursScores.BorderStyle = System.Windows.Forms.BorderStyle.None;
       this.trvMeilleursScores.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.trvMeilleursScores.Font = new System.Drawing.Font("Showcard Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.trvMeilleursScores.ForeColor = System.Drawing.Color.White;
       this.trvMeilleursScores.Location = new System.Drawing.Point(3, 27);
       this.trvMeilleursScores.Name = "trvMeilleursScores";

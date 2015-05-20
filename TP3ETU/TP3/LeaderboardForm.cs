@@ -146,7 +146,9 @@ namespace TP3
       trvMeilleursScores.Nodes.Clear();
       for (int i = 0; i != 10; i++)
       {
-        trvMeilleursScores.Nodes.Add(currentScoresWithNewScore[i]);
+        string scoreStr = currentScoresWithNewScore[i].Split(',')[0];
+        string nameStr = currentScoresWithNewScore[i].Split(',')[1];
+        trvMeilleursScores.Nodes.Add((i + 1) + " - " + nameStr + " (" + scoreStr + ")");
       }
     }
     //</Tommy Bouffard>
@@ -158,7 +160,7 @@ namespace TP3
 
     private void txtbNom_TextChanged(object sender, EventArgs e)
     {
-      if (Char.IsLetterOrDigit(txtbNom.Text[txtbNom.Text.Length - 1]))
+      if (txtbNom.Text.Length > 0 && Char.IsLetterOrDigit(txtbNom.Text[txtbNom.Text.Length - 1]))
       {
         btnValider.Enabled = true;
       }
