@@ -20,7 +20,7 @@ namespace TP3
     int score = 0;
 
     //<Charles Lachance>
-    private static bool scoresHasBeenLoaded = false;
+    private bool hasEnteredScore = false;
     //</Charles Lachance>
 
     /// <summary>
@@ -30,6 +30,7 @@ namespace TP3
     public LeaderboardForm()
     {
       InitializeComponent();
+      hasEnteredScore = false;
       //<Tommy Bouffard>
       //Le chargement du fichier peut lever une exception.
       try
@@ -97,6 +98,7 @@ namespace TP3
 
     private void btnNouvellePartie_Click(object sender, EventArgs e)
     {
+      hasEnteredScore = false;
       this.Close();
     }
 
@@ -108,9 +110,8 @@ namespace TP3
         currentScoresWithNewScore[10] = score + "," + txtbNom.Text;
         SortScores();
         pnlEntrerNom.Visible = false;
-        //<Charles Lachance>
+        hasEnteredScore = true;
         Logger.GetInstance().Log("New leaderboard entry : " + txtbNom.Text + " with " + score + " points");
-        //<Charles Lachance>
         AfficherScores();
         EcrireScores();
       }
@@ -177,7 +178,7 @@ namespace TP3
     private void LeaderboardForm_Shown(object sender, EventArgs e)
     {
       leaderBoardScoresNumbers[10] = score;
-      if (score > leaderBoardScoresNumbers[9])
+      if (score > leaderBoardScoresNumbers[9] && !hasEnteredScore)
       {
         pnlEntrerNom.Visible = true;
       }

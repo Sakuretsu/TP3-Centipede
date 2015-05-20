@@ -1,9 +1,8 @@
-2015-05-20 13:46:45:	Program started
-2015-05-20 13:46:45:	Game started
-2015-05-20 13:46:49:	Game ended
-2015-05-20 13:46:52:	Game ended
-2015-05-20 13:46:54:	Game ended
-2015-05-20 13:46:56:	Game ended
-2015-05-20 13:46:57:	Game ended
-2015-05-20 13:46:58:	Program stopped
+2015-05-20 16:17:23:	Program started
+2015-05-20 16:17:23:	Game started
+2015-05-20 16:17:31:	Game ended
+2015-05-20 16:17:39:	Game started
+2015-05-20 16:18:27:	Game ended
+2015-05-20 16:18:43:	New leaderboard entry : dfasgf with 7 points
+2015-05-20 16:18:50:	Program stopped
 ---------------------------------------------

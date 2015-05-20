@@ -72,7 +72,8 @@ namespace TP3
       {
         e.Cancel = true;
         mainTimer.Enabled = true;
-        MillipedeGame.sndTrack.PlayLooping();
+        if (game.Player.NbLives > 0)
+          MillipedeGame.sndTrack.PlayLooping();
       }
     }
     //</Charles Lachance>

@@ -29,6 +29,8 @@ namespace TP3
     public const int GAME_WIDTH = OBJECT_SIZE*NB_HORIZONTAL_BLOCKS;
     //Taille verticale de la fenêtre du jeu
     public const int GAME_HEIGHT = OBJECT_SIZE* NB_VERTICAL_BLOCKS;
+    //Nombre de champignons initiaux
+    public const int NB_STARTING_MUSHROOM = 40;
     //Pointage total
     private int score = 0;
     //Musique du jeu
@@ -64,19 +66,8 @@ namespace TP3
       Logger.GetInstance().Log("Game started");
       //</Charles Lachance>
       //<Tommy Bouffard>
-      int nbStartingMushroom = rnd.Next(25, 41);
-      for (int i = 0; i != nbStartingMushroom; i++)
+      for (int i = 0; i != NB_STARTING_MUSHROOM; i++)
       {
-        int xPos = rnd.Next(0, NB_HORIZONTAL_BLOCKS);
-        int yPos = rnd.Next(0, 2 * NB_VERTICAL_BLOCKS / 3);
-        for (int j = 0; j!= mushrooms.Count; j++)
-        {
-          if (mushrooms[j].XPosition == xPos && mushrooms[j].YPosition ==yPos)
-          {
-            mushrooms.RemoveAt(j);
-            break;
-          }
-        }
         mushrooms.Add(new Mushroom(rnd.Next(0, NB_HORIZONTAL_BLOCKS), rnd.Next(0, 2*NB_VERTICAL_BLOCKS/3)));
       }
       //Lors du début du jeu on commence à faire jouer la musique
@@ -116,111 +107,117 @@ namespace TP3
     public EndGameResult Update()
     {
       //<Charles Lachance>
-
-      for (int i = 0; i < snakes.Count; i++)
+      if (player.NbLives > 0)
       {
-        if (!snakes[i].Update(mushrooms))
+        for (int i = 0; i < snakes.Count; i++)
         {
-          snakes.RemoveAt(i);
-        }
-      }
-      Rectangle snakeRect = new Rectangle();
-      snakeRect.Height = OBJECT_SIZE;
-      snakeRect.Width = OBJECT_SIZE;
-
-      Rectangle playerRect = new Rectangle();
-      playerRect.Height = Player.PLAYER_HEIGHT;
-      playerRect.Width = Player.PLAYER_WIDTH;
-      playerRect.X = player.XPosition;
-      playerRect.Y = player.YPosition;
-      
-      for (int i = 0; i < snakes.Count; i++)
-      {
-        for (int j = 0; j < snakes[i].Length; j++)
-        {
-          snakeRect.X = snakes[i][j].X * OBJECT_SIZE;
-          snakeRect.Y = snakes[i][j].Y * OBJECT_SIZE;
-          if (CheckIntersectionBetweenRectangle(snakeRect, playerRect))
+          if (!snakes[i].Update(mushrooms))
           {
-            player.NbLives--;
-            KillAll();
-            break;
+            snakes.RemoveAt(i);
           }
-            
-          for (int k = 0; k < bullets.Count; k++)
+        }
+        Rectangle snakeRect = new Rectangle();
+        snakeRect.Height = OBJECT_SIZE;
+        snakeRect.Width = OBJECT_SIZE;
+
+        Rectangle playerRect = new Rectangle();
+        playerRect.Height = Player.PLAYER_HEIGHT;
+        playerRect.Width = Player.PLAYER_WIDTH;
+        playerRect.X = player.XPosition;
+        playerRect.Y = player.YPosition;
+
+        for (int i = 0; i < snakes.Count; i++)
+        {
+          for (int j = 0; j < snakes[i].Length; j++)
           {
-            if (snakes[i][j].X == bullets[k].XPosition / OBJECT_SIZE && snakes[i][j].Y == bullets[k].YPosition / OBJECT_SIZE)
+            snakeRect.X = snakes[i][j].X * OBJECT_SIZE;
+            snakeRect.Y = snakes[i][j].Y * OBJECT_SIZE;
+            if (CheckIntersectionBetweenRectangle(snakeRect, playerRect))
             {
-              Snake snake1 = new Snake(0);
-              Snake snake2 = new Snake(0);
-
-              snakes[i].Split(new Point(bullets[k].XPosition / OBJECT_SIZE, bullets[k].YPosition / OBJECT_SIZE), snake1, snake2);
-
-              mushrooms.Add(new Mushroom(snakes[i][j].X, snakes[i][j].Y));
-
-              bullets.RemoveAt(k);
-              snakes.RemoveAt(i);
-              snakes.Add(snake1);
-              snakes.Add(snake2);
-              score += 1;
+              player.NbLives--;
+              KillAll();
               break;
+            }
+
+            for (int k = 0; k < bullets.Count; k++)
+            {
+              if (snakes[i][j].X == bullets[k].XPosition / OBJECT_SIZE && snakes[i][j].Y == bullets[k].YPosition / OBJECT_SIZE)
+              {
+                Snake snake1 = new Snake(0);
+                Snake snake2 = new Snake(0);
+
+                snakes[i].Split(new Point(bullets[k].XPosition / OBJECT_SIZE, bullets[k].YPosition / OBJECT_SIZE), snake1, snake2);
+
+                mushrooms.Add(new Mushroom(snakes[i][j].X, snakes[i][j].Y));
+
+                bullets.RemoveAt(k);
+                snakes.RemoveAt(i);
+                snakes.Add(snake1);
+                snakes.Add(snake2);
+                score += 1;
+                break;
+              }
             }
           }
         }
-      }
-      if (snakes.Count == 0)
-      {
-        snakes.Add(new Snake(rnd.Next(Snake.MIN_LENGTH + nbOfSnakeSpawned, Snake.MAX_LENGTH + nbOfSnakeSpawned)));
-        nbOfSnakeSpawned++;
-      }
-
-      //</charles Lachance>
-      //<Tommy Bouffard>
-      player.Update();
-      if (rnd.Next(0, 351) == 350)
-      {
-        spiders.Add(new Spider());
-      }
-      foreach (Projectile shot in bullets)
-      {
-        shot.Update();
-      }
-      if (Keyboard.IsKeyDown(Key.Space))
-      {
-        //<charles Lachance>
-        if (player.Ammo <= BulletPowerup.MIN_AMMO_TO_SPAWN && powerup == null)
-          powerup = new BulletPowerup();
+        if (snakes.Count == 0)
         {
-          bullets.Add(player.Fire());
+          snakes.Add(new Snake(rnd.Next(Snake.MIN_LENGTH + nbOfSnakeSpawned, Snake.MAX_LENGTH + nbOfSnakeSpawned)));
+          nbOfSnakeSpawned++;
         }
-      }
-      Rectangle spiderRect = new Rectangle();
-      spiderRect.Height = Spider.SPIDER_SIZE;
-      spiderRect.Width = Spider.SPIDER_SIZE;
-      //<Tommy Bouffard>
-      for (int i = 0; i < spiders.Count; i++)
-      {
-        spiders[i].Update();
-        spiderRect.X = (int)spiders[i].XPosition;
-        spiderRect.Y = (int)spiders[i].YPosition;
-        if (CheckIntersectionBetweenRectangle(spiderRect, playerRect))
+
+        //</charles Lachance>
+        //<Tommy Bouffard>
+        player.Update();
+        if (rnd.Next(0, 251) == 250)
         {
-          player.NbLives--;
+          spiders.Add(new Spider());
+        }
+        foreach (Projectile shot in bullets)
+        {
+          shot.Update();
+        }
+        if (Keyboard.IsKeyDown(Key.Space))
+        {
           //<charles Lachance>
+          if (player.Ammo <= BulletPowerup.MIN_AMMO_TO_SPAWN && powerup == null)
+            powerup = new BulletPowerup();
+          {
+            bullets.Add(player.Fire());
+          }
+        }
+        Rectangle spiderRect = new Rectangle();
+        spiderRect.Height = Spider.SPIDER_SIZE;
+        spiderRect.Width = Spider.SPIDER_SIZE;
+        //<Tommy Bouffard>
+        for (int i = 0; i < spiders.Count; i++)
+        {
+          spiders[i].Update();
+          spiderRect.X = (int)spiders[i].XPosition;
+          spiderRect.Y = (int)spiders[i].YPosition;
+          if (CheckIntersectionBetweenRectangle(spiderRect, playerRect))
+          {
+            player.NbLives--;
+            //<charles Lachance>
+            KillAll();
+            //</charles Lachance>
+          }
+        }
+        //</Tommy Bouffard>
+        if (powerup != null && powerup.Update(player))
+          powerup = null;
+
+        RemoveShotEntities();
+        RandomizeSpiders();
+
+        if (player.NbLives <= 0)
+        {
+          Logger.GetInstance().Log("Game ended");
           KillAll();
-          //</charles Lachance>
         }
       }
-      //</Tommy Bouffard>
-      if (powerup != null && powerup.Update(player))
-        powerup = null;
-
-      RemoveShotEntities();
-      RandomizeSpiders();
-
-      if (player.NbLives <= 0)
+      else
       {
-        Logger.GetInstance().Log("Game ended");
         return EndGameResult.GAME_LOST;
       }
       return EndGameResult.GAME_CONTINUE;
