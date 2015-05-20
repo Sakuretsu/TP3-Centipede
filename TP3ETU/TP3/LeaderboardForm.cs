@@ -27,10 +27,7 @@ namespace TP3
       InitializeComponent();
       //<Tommy Bouffard>
       this.score = score;
-      txtbNom.Visible = true;
-      btnValider.Visible = true;
-      lblMeilleursScores.Visible = true;
-      lblNouveauRecord.Text = "Nouveau record!";
+
       //Le chargement du fichier peut lever une exception.
       try
       {
@@ -50,20 +47,17 @@ namespace TP3
           leaderBoardScoresNumbers[i] = int.Parse(division[0]);
         }
         leaderBoardScoresNumbers[10] = score;
-        if (score < leaderBoardScoresNumbers[9])
+        if (score > leaderBoardScoresNumbers[9])
         {
-          txtbNom.Visible = false;
-          btnValider.Visible = false;
-          lblMeilleursScores.Visible = false;
-          lblVeuillezEntrerNom.Visible = false;
-          lblNouveauRecord.Text = "Game Over!";
+          //<Charles Lachance>
+          pnlEntrerNom.Visible = true;
+          //</Charles Lachance>
         }
         AfficherScores();
       }
     }
-    /*
-     *   
-    */
+    
+
     /// <summary>
     /// Cette finction trie les valeurs du leaderboard.
     /// En triant le tableau des pointages du leaderboard, il trie en parallèle le tableau des scores.
@@ -97,11 +91,6 @@ namespace TP3
       return leaderBoardScoresNumbers;
     }
 
-    private void btnQuitter_Click(object sender, EventArgs e)
-    {
-      Application.Exit();
-    }
-
     private void btnNouvellePartie_Click(object sender, EventArgs e)
     {
       this.Close();
@@ -115,6 +104,9 @@ namespace TP3
         currentScoresWithNewScore[10] = score + "," + txtbNom.Text;
         SortScores();
         pnlEntrerNom.Visible = false;
+        //<Charles Lachance>
+        Logger.GetInstance().Log("New leaderboard entry : " + txtbNom.Text + " with " + score + " points");
+        //<Charles Lachance>
         AfficherScores();
         EcrireScores();
       }

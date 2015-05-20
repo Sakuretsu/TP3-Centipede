@@ -78,6 +78,7 @@
       this.MinimizeBox = false;
       this.Name = "MillipedeGameForm";
       this.Text = "Millipede";
+      this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MillipedeGameForm_FormClosing);
       this.Load += new System.EventHandler(this.OnLoad);
       this.Paint += new System.Windows.Forms.PaintEventHandler(this.OnDraw);
       this.ResumeLayout(false);

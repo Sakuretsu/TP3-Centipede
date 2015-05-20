@@ -24,7 +24,7 @@ namespace TP3
     {
       try
       {
-        File.AppendAllText("log.txt", DateTime.Now.ToString() + "\t-" + text + "\r\n");
+        File.AppendAllText("log.txt", DateTime.Now.ToString() + ":\t" + text + "\r\n");
       }
       catch (Exception ex)
       {
@@ -37,7 +37,7 @@ namespace TP3
     {
       try
       {
-        File.AppendAllText("log.txt", DateTime.Now.ToString() + "\t-" + text + "\r\n");
+        File.AppendAllText("log.txt", DateTime.Now.ToString() + ":\t" + text + "\r\n");
         File.AppendAllText("log.txt", "---------------------------------------------\r\n");
       }
       catch (Exception ex)

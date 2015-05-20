@@ -10,8 +10,10 @@ namespace TP3
     public MillipedeGameForm( )
     {
       InitializeComponent( );
+      //<Charles Lachance>
       Logger.GetInstance().Log("Program started");
       game = new MillipedeGame();
+      //<Charles Lachance>
     }
 
     private void OnLoad( object sender, EventArgs e )
@@ -54,6 +56,11 @@ namespace TP3
       //</Charles Lachance>
 
       Invalidate( );
+    }
+
+    private void MillipedeGameForm_FormClosing(object sender, FormClosingEventArgs e)
+    {
+      Logger.GetInstance().EndLog("Program stopped");
     }
   }
 }

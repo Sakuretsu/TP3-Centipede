@@ -60,6 +60,7 @@
       this.pnlEntrerNom.Name = "pnlEntrerNom";
       this.pnlEntrerNom.Size = new System.Drawing.Size(237, 258);
       this.pnlEntrerNom.TabIndex = 0;
+      this.pnlEntrerNom.Visible = false;
       // 
       // btnValider
       // 
@@ -185,7 +186,6 @@
       this.btnQuitter.TabIndex = 0;
       this.btnQuitter.Text = "Quitter";
       this.btnQuitter.UseVisualStyleBackColor = true;
-      this.btnQuitter.Click += new System.EventHandler(this.btnQuitter_Click);
       // 
       // btnNouvellePartie
       // 
@@ -211,7 +211,7 @@
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
       this.Name = "LeaderboardForm";
       this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-      this.Text = "Leaderboard";
+      this.Text = "Game Over!";
       this.pnlEntrerNom.ResumeLayout(false);
       this.pnlEntrerNom.PerformLayout();
       this.pnlLeaderboard.ResumeLayout(false);
