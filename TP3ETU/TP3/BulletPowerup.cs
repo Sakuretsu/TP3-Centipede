@@ -1,4 +1,4 @@
-﻿/* Représente une recharge de munition que le joueur peut
+﻿/* Classe représentant une recharge de munition que le joueur peut
  * ramasser. Lorsque le joueur la rammasse, elle lui redonne 20 balles.
  * 
  * Créé par Charles Lachance
@@ -23,7 +23,7 @@ namespace TP3
     //La position du powerup en X
     public int XPosition
     {
-      get; //todo
+      get;
       private set;
     }
 

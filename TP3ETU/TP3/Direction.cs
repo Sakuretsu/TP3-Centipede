@@ -1,4 +1,4 @@
-﻿/* Représente une direction sur une dimension
+﻿/* Énumération représentant une direction sur une dimension
  * 
  * Créé par Charles Lachance
  */ 

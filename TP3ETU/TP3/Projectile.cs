@@ -5,7 +5,6 @@
  * 
  */
 using System.Drawing;
-using System.Media;
 
 namespace TP3
 {

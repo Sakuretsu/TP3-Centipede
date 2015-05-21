@@ -1,4 +1,4 @@
-﻿/* Représente le résultat de la fin de la partie
+﻿/* Énumération représentant le résultat de la fin de la partie
  * 
  * Créé par Charles Lachance
  */ 
