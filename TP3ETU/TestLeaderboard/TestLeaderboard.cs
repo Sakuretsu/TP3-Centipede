@@ -54,5 +54,82 @@ namespace TestLeaderboard
       board.SortScores();
       Assert.AreEqual(board.GetLeaderBoard()[9], 1);
     }
+
+    //<Charles Lachance>
+    //Vérifie si le leaderboard sauvegarde dans le bon format
+    [TestMethod]
+    public void TestScoreSaveFormat()
+    {
+      LeaderboardForm board = new LeaderboardForm();
+      board.PlayerName = "René";
+      board.ScoreTester = 999;
+      board.SortScores();
+      board.ScoreTester = 998;
+      board.SortScores();
+      board.ScoreTester = 997;
+      board.SortScores();
+      board.ScoreTester = 996;
+      board.SortScores();
+      board.PlayerName = "Descartes";
+      board.ScoreTester = 995;
+      board.SortScores();
+      board.ScoreTester = 994;
+      board.SortScores();
+      board.ScoreTester = 993;
+      board.SortScores();
+      board.ScoreTester = 992;
+      board.SortScores();
+      board.ScoreTester = 991;
+      board.SortScores();
+      board.ScoreTester = 990;
+      board.SortScores();
+      board.EcrireScores();
+
+      Assert.AreEqual("999,René;\n" +
+                      "998,René;\n" +
+                      "997,René;\n" +
+                      "996,René;\n" +
+                      "995,Descartes;\n" +
+                      "994,Descartes;\n" +
+                      "993,Descartes;\n" +
+                      "992,Descartes;\n" +
+                      "991,Descartes;\n" +
+                      "990,Descartes;\n", File.ReadAllText("Leaderboard.txt"));
+    }
+
+    //Vérifie si le leaderboard crash lors de l'ouverture d'un fichier inexistant
+    [TestMethod]
+    [ExpectedException(typeof(FileNotFoundException), "Fichier inexistant")]
+    public void TestScoreSaveFormat()
+    {
+      if (File.Exists("Leaderboard.txt"))
+      {
+        File.Delete("Leaderboard.txt");
+      }
+
+      LeaderboardForm board = new LeaderboardForm();
+    }
+
+    //Vérifie si le leaderboard crash lors de l'écriture dans un fichier inexistant
+    [TestMethod]
+    public void TestScoreSaveFormat()
+    {
+      LeaderboardForm board = new LeaderboardForm();
+
+      if (File.Exists("Leaderboard.txt"))
+      {
+        File.Delete("Leaderboard.txt");
+      }
+
+      try
+      {
+        board.EcrireScores();
+      }
+      catch(Exception e)
+      {
+        Assert.Fail(e.Message);
+      }
+    }
+    //</Charles Lachance>
   }
 }

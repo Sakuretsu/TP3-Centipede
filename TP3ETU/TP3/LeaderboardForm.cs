@@ -25,6 +25,19 @@ namespace TP3
     //<Charles Lachance>
     //Est-ce que le joueur a déjà sauvegarder son record
     private bool hasEnteredScore = false;
+
+    //Propriété du nom du joueur
+    public string PlayerName
+    {
+      get
+      {
+        return txtbNom.Text;
+      }
+      set
+      {
+        txtbNom.Text = value;
+      }
+    }
     //</Charles Lachance>
 
     /// <summary>

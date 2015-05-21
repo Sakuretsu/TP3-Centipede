@@ -1,0 +1,7 @@
+D:\Documents\École\Jeux Vidéos\TP3-Centipede\TP3ETU\TestLeaderboard\obj\Debug\TestLeaderboard.csprojResolveAssemblyReference.cache
+D:\Documents\École\Jeux Vidéos\TP3-Centipede\TP3ETU\TestLeaderboard\bin\Debug\TestLeaderboard.dll
+D:\Documents\École\Jeux Vidéos\TP3-Centipede\TP3ETU\TestLeaderboard\bin\Debug\TestLeaderboard.pdb
+D:\Documents\École\Jeux Vidéos\TP3-Centipede\TP3ETU\TestLeaderboard\bin\Debug\TP3.exe
+D:\Documents\École\Jeux Vidéos\TP3-Centipede\TP3ETU\TestLeaderboard\bin\Debug\TP3.pdb
+D:\Documents\École\Jeux Vidéos\TP3-Centipede\TP3ETU\TestLeaderboard\obj\Debug\TestLeaderboard.dll
+D:\Documents\École\Jeux Vidéos\TP3-Centipede\TP3ETU\TestLeaderboard\obj\Debug\TestLeaderboard.pdb
