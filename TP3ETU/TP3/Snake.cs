@@ -47,6 +47,18 @@ namespace TP3
     }
 
     /// <summary>
+    /// Crée un nouveau serpent
+    /// </summary>
+    public Snake()
+    {
+      //On initialise la liste des parties du serpent
+      bodyParts = new List<Point>();
+
+      //On initialise la direction du serpent
+      direction = Direction.Left;
+    }
+
+    /// <summary>
     /// Crée un nouveau serpent de la taille spécifié
     /// </summary>
     /// <param name="length">La taille du serpent à créer</param>
@@ -60,7 +72,7 @@ namespace TP3
       }
 
       //On initialise la liste des parties du serpent
-      bodyParts = new List<Point>(0);
+      bodyParts = new List<Point>();
 
       //Pour chaque partie du serpent...
       for (int i = 0; i < length; i++)
@@ -194,7 +206,7 @@ namespace TP3
         if (index < 0 || index > bodyParts.Count())
         {
           //On lance une erreur
-          throw new ArgumentOutOfRangeException("Ce morceau de serpent n'existe pas");
+          throw new ArgumentOutOfRangeException("index", "Ce morceau de serpent n'existe pas");
         }
 
         return bodyParts[index];
