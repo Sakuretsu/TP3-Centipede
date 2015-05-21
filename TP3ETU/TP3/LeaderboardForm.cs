@@ -1,4 +1,7 @@
-﻿
+﻿/* Formulaire représentant un tableau gradant en mémoire les dix meilleurs scores
+ * 
+ * Créer par Charles Lachance et Tommy Bouffard
+ */
 //<Charles Lachance>
 using System;
 using System.Windows.Forms;
@@ -20,6 +23,7 @@ namespace TP3
     int score = 0;
 
     //<Charles Lachance>
+    //Est-ce que le joueur a déjà sauvegarder son record
     private bool hasEnteredScore = false;
     //</Charles Lachance>
 
@@ -50,6 +54,9 @@ namespace TP3
       }
     }
     
+    /// <summary>
+    /// Propriété permettant de modifier le score du joueur
+    /// </summary>
     public int Score
     {
       get
@@ -75,7 +82,7 @@ namespace TP3
       }
     }
     /// <summary>
-    /// Cette finction trie les valeurs du leaderboard.
+    /// Cette fonction trie les valeurs du leaderboard.
     /// En triant le tableau des pointages du leaderboard, il trie en parallèle le tableau des scores.
     /// </summary>
     public void SortScores()
@@ -102,30 +109,53 @@ namespace TP3
       }
     }
 
-    //</Tommy Bouffard>
     public int[] GetLeaderBoard()
     {
       return leaderBoardScoresNumbers;
     }
+    //</Tommy Bouffard>
 
+    /// <summary>
+    /// Évènement appelé lors d'un clique sur le bouton "Nouvelle partie"
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void btnNouvellePartie_Click(object sender, EventArgs e)
     {
+      //Le joueur a le potentiel de faire un nouveau record
       hasEnteredScore = false;
+      //On ferme le formulaire
       this.Close();
     }
 
+    /// <summary>
+    /// Évènement appelé lors d'un clique sur le bouton "Valider"
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void btnValider_Click(object sender, EventArgs e)
     {
+      //On enlève les espaces de début et de fin de ligne
       txtbNom.Text = txtbNom.Text.Trim();
+
+      //Si le champ n'est pas vide...
       if (txtbNom.Text != "")
       {
+        //<Tommy Bouffard>
         currentScoresWithNewScore[10] = score + "," + txtbNom.Text;
         SortScores();
+        //</Tommy Bouffard>
+
+        //On cache la partie permettant d'entrer son nom
         pnlEntrerNom.Visible = false;
+        //Le joueur a entré un nouveau record
         hasEnteredScore = true;
+        //On journalise le nouveau record
         Logger.GetInstance().Log("New leaderboard entry : " + txtbNom.Text + " with " + score + " points");
+        //<Tommy Bouffard>
         AfficherScores();
         EcrireScores();
+        //</Tommy Bouffard>
       }
     }
     //<Tommy Bouffard>
@@ -170,32 +200,56 @@ namespace TP3
     }
     //</Tommy Bouffard>
 
+    /// <summary>
+    /// Évènement appelé lors du clique sur un élément de la liste des records
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void trvMeilleursScores_BeforeSelect(object sender, TreeViewCancelEventArgs e)
     {
+      //On annule l'évènement
       e.Cancel = true;
     }
 
+    /// <summary>
+    /// Évènement appelé lorsque la valeur du champ permettant d'entrer son nom change
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void txtbNom_TextChanged(object sender, EventArgs e)
     {
+      //Si la longueur du champ est strictement positive et que le dernier caractère entré est une lettre ou un chiffre...
       if (txtbNom.Text.Length > 0 && Char.IsLetterOrDigit(txtbNom.Text[txtbNom.Text.Length - 1]))
       {
+        //On active le boutton pour valider son nom
         btnValider.Enabled = true;
       }
       else
       {
+        //On désactive le boutton pour valider son nom
         btnValider.Enabled = false;
       }
     }
 
+    /// <summary>
+    /// Évènement appelé lors du premier affichage du leaderboard
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void LeaderboardForm_Shown(object sender, EventArgs e)
     {
+      //<Tommy Bouffard>
       leaderBoardScoresNumbers[10] = score;
+      //<Charles Lachance>
+      //On affiche le score du joueur
       lblNbPoints.Text = "Votre score : " + score;
+      //</Charles Lachance>
       if (score > leaderBoardScoresNumbers[9] && !hasEnteredScore)
       {
         pnlEntrerNom.Visible = true;
       }
       AfficherScores();
+      //</Tommy Bouffard>
     }
   }
 }
